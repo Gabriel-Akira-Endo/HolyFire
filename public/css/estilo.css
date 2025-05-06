@@ -280,9 +280,48 @@ font-weight: 400;
 line-height: normal;
 }
 .Missionario{
-  
+height: 100vh;
+width: 100%;
+background-color: #fff;
+display: flex;
+flex-direction: row;
 }
-
+.textos_miss{
+  width: 50%;
+  padding: 3%;
+}
+.titulo_miss{
+  padding-top: 1%;
+  text-align: center;
+  width: 100%;
+  color: #000;
+font-family: Notable;
+font-size: 3rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+height: 50%;
+}
+.texto_dentro_miss{
+padding: 5%;
+  border-radius: 40px;
+border: 5px solid #1D3557;
+background: rgba(217, 217, 217, 0.00);
+  width: 85%;
+  color: #000;
+text-align: center;
+font-family: Montserrat;
+font-size: 2rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+.img_miss{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
 
 
 
