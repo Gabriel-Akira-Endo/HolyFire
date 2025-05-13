@@ -4,7 +4,7 @@ var router = express.Router()
 
 var usuarioController = require("../controllers/usuarioController")
 
-router.post("/:id", function (req,res) {
-    usuarioController.curtir(req,res)
+router.get("/:id", function (req,res) {
+    usuarioController.contarCurtida(req,res)
 })
 module.exports = router
