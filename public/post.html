@@ -5,9 +5,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Posts</title>
+  <link rel="stylesheet" href="css/estilo.css">
 </head>
 
 <body>
+  <div class="header">
+    <div class="container">
+      <h1 class="titulo">HolyFire<img src="assets/imgs/logoPequena.png"></h1>
+      <div class="navbar_pesquisa">
+        <span><img src="assets/imgs/icone_pesquisa.png" style="width: auto;height: 80%;"></span>
+        <input type="text" placeholder="buscar evento">
+      </div>
+      <ul class="navbar">
+        <li class="agora">
+          <a href="#">Inicial</a>
+        </li>
+
+        <li>
+          <a href="simulador.html">Missão</a>
+        </li>
+        <li>|</li>
+        <li>
+          <a href="login.html">Login</a>
+        </li>
+        <li>
+          <a href="cadastro.html">Cadastro</a>
+        </li>
+      </ul>
+    </div>
+  </div>
   <div id="1">
     <div>usuario</div>
     <img src="assets/imgs/ebd.png" style="height: 100px; width: auto;">
@@ -19,6 +45,7 @@
 </html>
 <script>
 
+
   var idPost = 1
   function curtida(idPost) {
 
@@ -28,21 +55,22 @@
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
         idPostServer: idPost
 
       }),
     }).then(res => {
       console.log(res)
       contarCurtida(idPost)
+      if(!res.ok){
+        throw new Error ("Erro de fdp")
+      }
     })
-
+    .catch(error =>{
+      descurtir(idUser)
+    });
 
   }
-    var idPost = 1
   function contarCurtida(idPost) {
-      var idPost = 1
     fetch(`/qtdCurtida/${idPost}`)
 
       .then(res => res.json())
@@ -54,4 +82,49 @@
       })
 
   }
+
+
+// function descurtir(idPost) {
+//   fetch(`/descurtir/${idPost}`, {
+//       method: "POST",
+//       headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify({
+//         idPostServer: idPost
+        
+//           }),
+//         }).then(res => {
+//             console.log(res)
+//             contarCurtida(idPost)
+//           })
+//           .catch(error =>{
+//               alert("descurtir falhou")
+//             });
+//           }
+
+
+
+
+  
+//   function descurtir(idPost){
+
+//     fetch(`/descurtir/${idPost}`)
+
+// .then(res => {
+//       console.log(res)
+//   contarCurtida(idPost)
+//     })
+//     .catch(error =>{
+      
+//       curtida(idPost)
+//     }
+
+//   //     then(res => {
+//   //     console.log(res)
+//   //     contarCurtida(idPost)
+//   //   .then(descurtir => {
+//   //     console.log(res)
+//   //     contarCurtida(idPost)
+//   // })}
 </script>

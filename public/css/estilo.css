@@ -2,6 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Judson:ital,wght@0,400;0,700;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Judson:ital,wght@0,400;0,700;1,400&family=Notable&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Judson:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Notable&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lustria&display=swap');
+
 body {
   margin: 0;
   padding: 0;
@@ -524,49 +526,80 @@ input {
   height: var(--tamanho-simulador);
 }
 
-/* ALERTA */
-
-#alerta {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
-
-.mensagem-alarme {
-  background-color: white;
-  border-radius: 5px;
-  width: 300px;
-  height: 80px;
-  margin: 10px;
-  padding: 10px 0;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.mensagem-alarme h3 {
-  font-size: 14px;
-  margin: 0;
-}
-
-.mensagem-alarme .informacao {
-  width: 66%;
-}
-
-.alarme-sino {
-  width: 48px;
-  height: 48px;
-  animation-name: bell;
-  animation-duration: 4s;
-  background-image: url('https://cdn-icons-png.flaticon.com/512/1157/1157000.png');
+.bannerLoginCad {
+  height: var(--tamanho-banner);
+  color: white;
   background-size: cover;
-  animation-iteration-count: infinite;
+  display: flex;
+  flex-direction: row;
+}
+.div_login{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+width: 40%;
+height: 100%;
+background-color: #1D3557;
+}
+.div_fundo{
+  width: 70%;
+  overflow:hidden;
+  background-image: url(../assets/imgs/fundo_login.png);
+   background-size: cover;        
+    background-position: center;  
+    background-repeat: no-repeat; 
+  display: flex;
+  padding: 2%;
+  align-items: flex-end;
+  justify-content: left;
+  border-left: white 1px solid;
+  position: relative;
+}
+.versiculo_class{
+  color: #000;
+margin-left:3%;
+  width: 40%;
+  font-size: 5vh;
+ height: auto;
+border: black solid 5px;
+background-color: Rgba(217, 217, 217, 0.49);
+border-radius: 10px;
+padding: 2%;
+}
+.div_jesus_cima{
+  height: 100vh;
+  position: absolute;
+  height: 105%;
+    right: 2.5%;
+    bottom: 0;
+}
+.div_jesus_cima img{
+  width: auto;
+  height: 110%;
+}
+.texto_cima_login{
+  padding-top: 5%;
+font-size: 8vh;
+}
+.div_escolha_login{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.botao_esolha{
+height: 40px;
+border: black solid 2px;
+width: 90%;
+background: #D9D9D9;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.botao_esolha div{
+  
 }
 
-@keyframes bell {
-  0%   {transform: rotate(25deg)}
-  25%  {transform: rotate(-25deg)}
-  50%  {transform: rotate(25deg)}
-  75%  {transform: rotate(-25deg)}
-  100% {transform: rotate(25deg)}
+.meio_bt_escolha{
 }

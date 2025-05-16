@@ -17,6 +17,7 @@ var app = express();
 
 var usuarioRouter = require("./src/routes/usuarios");
 var qtdCurtidaRouter = require("./src/routes/qtdCurtida");
+var descurtirRouter = require("./src/routes/descurtir")
 
 
 app.use(express.json());
@@ -27,6 +28,8 @@ app.use(cors());
 
 app.use("/curtidas", usuarioRouter);
 app.use("/qtdCurtida", qtdCurtidaRouter);
+app.use("/descurtir", descurtirRouter);
+
 
 app.listen(PORTA_APP, function () {
     console.log(`
