@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/estilo.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/estilo.css">
+  <title>Document</title>
 </head>
-<body >
-    <div class="header">
+
+<body>
+  <div class="header">
     <div class="container">
       <h1 class="titulo">HolyFire<img src="assets/imgs/logoPequena.png"></h1>
       <div class="navbar_pesquisa">
@@ -17,7 +19,7 @@
       <ul class="navbar">
         <li class="agora">
           <a href="index.html">Inicial</a>
-        </li> 
+        </li>
 
         <li>
           <a href="simulador.html">Missão</a>
@@ -32,31 +34,83 @@
       </ul>
     </div>
   </div>
-  <div class="bannerLoginCad" >
+
+  <div class="bannerLoginCad">
     <div class="div_login">
       <div class="texto_cima_login"><u>LOGIN</u></div>
-      <div class="div_escolha_login">
-        <div class="botao_esolha">
-          <div>a</div>
-          <div>a</div>
+
+      <div class="div_escolha_login" id="div_log_inicial">
+        <div class="botao_esolha" onclick="ir_igreja()">
+          <div><img src="assets/imgs/Church.png" alt=""></div>
+          <div class="texto_igreja">Igreja</div>
         </div>
-        <div class="meio_bt_escolha">a</div>
-        <div class="botao_esolha">a</div>
+        <div class="meio_bt_escolha">OU</div>
+        <div class="botao_esolha" onclick="ir_usuario()">
+          <div><img src="assets/imgs/Account.png" alt=""></div>
+          <div class="texto_igreja">Usuario</div>
+        </div>
       </div>
+
+      <div class="div_login_igreja" style="display: none;" id="div_log_i">
+        <div class="div_fildeset">
+          <fieldset style="margin:0;">
+            <legend>EMAIL</legend>
+            <input type="text" placeholder="examplo@gmail.com" id="email_igreja">
+          </fieldset>
+        </div>
+        <div class="div_fildeset">
+          <fieldset style="margin:0;">
+            <legend>Senha</legend>
+            <input type="password" placeholder="12345Abençoado" id="senha_igreja">
+          </fieldset>
+        </div>
+        <div id="botao_login">ENTRAR</div>
+      </div>
+
+      <div class="div_login_usuario" style="display: none;" id="div_log_u">
+        <div class="div_fildeset">
+          <fieldset style="margin:0;">
+            <legend>EMAIL</legend>
+            <input type="text" placeholder="examplo@gmail.com" id="email_igreja">
+          </fieldset>
+        </div>
+        <div class="div_fildeset">
+          <fieldset style="margin:0;">
+            <legend>Senha</legend>
+            <input type="password" placeholder="12345Abençoado" id="senha_igreja">
+          </fieldset>
+        </div>
+        <div id="botao_login">ENTRAR</div>
+      </div>
+
     </div>
-    <div class="div_fundo"> <div class="div_jesus_cima"><img src="assets/imgs/Jesus_cima.png" alt=""></div>
-    <div id="div_versiculo_aleatorio" class="versiculo_class"></div>
-  </div>
+    <div class="div_fundo">
+      <div class="div_jesus_cima"><img src="assets/imgs/Jesus_cima.png" alt=""></div>
+      <div id="div_versiculo_aleatorio" class="versiculo_class"></div>
+    </div>
   </div>
 </body>
+
 </html>
 <script src="js/versiculo.js">
-versiculos()
+  versiculos()
 </script>
 
-<script></script>
-<script></script>
-
 <script>
+function ir_igreja(){
 
+div_log_inicial.style.display = "none";
+div_log_i.style.display = "flex";
+div_log_u.style.display = "none";
+}
+function ir_usuario(){
+
+
+  div_log_u.classList.add("adicionar_anima")
+
+
+div_log_inicial.style.display = "none";
+div_log_i.style.display = "none";
+div_log_u.style.display = "flex";
+}
 </script>

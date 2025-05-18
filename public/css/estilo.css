@@ -381,41 +381,12 @@ line-height: normal;
   font-size: 30px;
 }
 
-.formulario {
-  display: flex;
-  height: 90%;
-  width: 80%;
-  justify-content: space-around;
-  flex-direction: column;
-}
-
-.formulario span {
-  font-size: 15px;
-  font-weight: 800;
-}
-
-.formulario input {
-  border: 2px solid #32b9cd;
-  text-align: center;
-  border-radius: 10px;
-  margin: 0;
-}
-
-.formulario select {
-  border: 2px solid #32b9cd;
-  background-color: white;
-  color: gray;
-  height: 36px;
-  text-align: center;
-  border-radius: 10px;
-  margin: 0;
-}
-
 .campo {
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  padding: 5px 0;
+  justify-content: center;
+  height: 15%;
+  padding-top: 5%;
 }
 
 .botao {
@@ -424,13 +395,14 @@ line-height: normal;
   border: 0;
   border-radius: 5px;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 4vh;
   color: #fff;
-  background-color: #ED145B;
-  width: 120px;
-  height: 30px;
+  background-color: #32b9cd;
+  width: 90%;
+  height: 10%;
   align-self: center;
-  margin-top: 20px;
+  margin-top: 20%;
+
 }
 
 .loading-div {
@@ -585,21 +557,114 @@ font-size: 8vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-evenly;
   width: 100%;
   height: 100%;
+  padding: 10%;
+
 }
 .botao_esolha{
-height: 40px;
+padding: 5%;
+height: 7.5%;
 border: black solid 2px;
-width: 90%;
+width: 70%;
 background: #D9D9D9;
 display: flex;
 justify-content: center;
 align-items: center;
+border-radius: 40PX;
+cursor: pointer;
 }
-.botao_esolha div{
-  
+.texto_igreja{
+  color: #1A262C;
+text-align: center;
+font-family: Judson;
+font-size: 10vh;
+font-style: normal;
+font-weight: 700;
+text-transform: uppercase;
+}
+.botao_esolha div img{
+width: 100%;
+height: auto;
+}
+.meio_bt_escolha{
+  color: #FFF;
+text-align: center;
+font-family: Montserrat;
+font-size: 8vh;
+font-style: normal;
+font-weight: 568;
+line-height: normal;
+text-transform: uppercase;
+}
+.div_login_igreja{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 80%;
+  width: 100%;
+}
+.div_login_usuario{
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 80%;
+  width: 100%;
+  transform: translateY(-500px);
 }
 
-.meio_bt_escolha{
+.adicionar_anima{
+    animation: animado 2s ease-in-out forwards;
+}
+
+
+@keyframes animado {
+  0%{transform: translateY(500px);
+    opacity:0
+  }
+
+  100%{transform: translateX(0px);
+  opacity:1
+  }
+}
+
+
+fieldset{
+  padding: 0;
+width:auto;
+}
+fieldset legend{
+  font-size: 5vh;
+  margin-left: 5%;
+  font-weight: 500;
+}
+fieldset input{
+  background-color:transparent;
+  border: 0;
+  text-align: left;
+  width: 93%;
+  color: #D9D9D9;
+  font-size: 3vh;
+}
+fieldset input:focus{
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.div_fildeset{
+  width: 90%;
+}
+#botao_login{
+  margin-top: 5%;
+  width: 80%;
+ height: 10%;
+  background-color: #32b9cd;
+  font-size: 5vh;
+  text-align: center;
+  border-radius:30px ;
+  font-weight: 700;
 }
