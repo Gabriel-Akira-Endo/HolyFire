@@ -39,28 +39,32 @@ function contarCurtida(req,res){
     )
 
 }
+    function cadastroI(req, res) {
+    var nomeI = req.body.nomeIServer
+    var cnpjI = req.body.cnpjIServer
+    var CEPI = req.body.CEPIServer
+    var emailI = req.body.emailIServer
+    var SenhaI = req.body.SenhaIServer
 
-function descurtirCurtida(req,res){
-    var idUser = req.body.  idUserServer
-    exploreModel.descurtir(idUser)
-    .then(
-        resultado => {
-            res.status(200).json(resultado)
-        }
-    ).catch(
-        function (erro){
-            console.log(erro)
-            console.log(
-                "\nHouve um erro no descurtir:",
-                erro.sqlMessage
-            )
-            res.status(500).json(erro.sqlMessage)
-        }
-    )
+    exploreModel.cadastroI(nomeI, cnpjI, CEPI, emailI,SenhaI)
 
+        .then(
+            function (resultado) {
+                res.json(resultado)
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                console.log(
+                    "\n Houve um erro ao realizar o cadastro! Erro: "
+                );
+                res.status(500).json(erro.sqlMessage)
+            }
+        )
 }
 
 
+
 module.exports = {
-    curtir,contarCurtida, descurtirCurtida
+    curtir,contarCurtida,cadastroI,
 }

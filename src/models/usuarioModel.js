@@ -18,14 +18,12 @@ console.log("Executando a instrunção SQL: \n" + instrucaoSql)
 return database.executar(instrucaoSql)
 
 }
-
-function descurtir(idUser){
-var instrucaoSql = `delete from curtida where fk_id_usuario = ${idUser} and evento_idevento_like = 1;`
+function cadastroI(nomeI,cnpjI,CEPI,emailI,SenhaI){
+var instrucaoSql = `INSERT INTO igreja (nomeIgreja, cnpj, email, senha,cep)
+VALUES ('${nomeI}', '${cnpjI}','${emailI}','${SenhaI}', '${CEPI}');`
 console.log("Executando a instrunção SQL: \n" + instrucaoSql)
 return database.executar(instrucaoSql)
-
 }
-
 module.exports = {
-    curtir, contarCurtida, descurtir
+    curtir, contarCurtida,cadastroI
 }
