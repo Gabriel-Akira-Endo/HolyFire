@@ -9,8 +9,8 @@ router.post("/cadastroI", function (req, res) {
 })
 
 //Autenticar
-router.post("/autenticar", function (req, res) {
-    usuarioController.autenticar(req, res)
+router.post("/loginI", function (req, res) {
+    usuarioController.loginI(req, res)
 })
 
 module.exports = router

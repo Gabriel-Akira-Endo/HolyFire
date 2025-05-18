@@ -64,20 +64,20 @@
             <input type="password" placeholder="12345Abençoado" id="senha_igreja">
           </fieldset>
         </div>
-        <div id="botao_login">ENTRAR</div>
+        <div id="botao_login" onclick="entrar()">ENTRAR</div>
       </div>
 
       <div class="div_login_usuario" style="display: none;" id="div_log_u">
         <div class="div_fildeset">
           <fieldset style="margin:0;">
             <legend>EMAIL</legend>
-            <input type="text" placeholder="examplo@gmail.com" id="email_igreja">
+            <input type="text" placeholder="examplo@gmail.com" id="email_Usuario">
           </fieldset>
         </div>
         <div class="div_fildeset">
           <fieldset style="margin:0;">
             <legend>Senha</legend>
-            <input type="password" placeholder="12345Abençoado" id="senha_igreja">
+            <input type="password" placeholder="12345Abençoado" id="senha_Usuario">
           </fieldset>
         </div>
         <div id="botao_login">ENTRAR</div>
@@ -113,5 +113,68 @@ div_log_inicial.style.display = "none";
 div_log_i.style.display = "none";
 div_log_u.style.display = "flex";
 }
+
+
+    function entrar() {
+
+
+        var emailIVar = email_igreja.value;
+        var senhaIVar = senha_igreja.value;
+
+        if (emailIVar == "" || senhaIVar == "") {
+          alert("Mensagem de erro para todos os campos em branco");
+            return false;
+        }
+
+        console.log("FORM LOGIN: ", emailIVar);
+        console.log("FORM SENHA: ", senhaIVar);
+
+        fetch("/cadastro_login/loginI", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailIServer: emailIVar,
+                senhaIServer: senhaIVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                  
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.ID_IGREJA = json.idIgreja;
+                    sessionStorage.NOME_IGREJA = json.nomeIgreja;
+                    sessionStorage.EMAIL_IGREJA = json.email;
+
+                    setTimeout(function () {
+                        alert("Login Bem sucedido")
+                        window.location = "post.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+
 </script>
 

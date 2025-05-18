@@ -62,9 +62,36 @@ function contarCurtida(req,res){
             }
         )
 }
+    function loginI(req, res) {
+
+    var emailI = req.body.emailIServer
+    var senhaI = req.body.senhaIServer
+
+  if (!emailI || !senhaI) {
+        return res.status(400).json({ erro: "Preencha todos os campos!" });
+    }
+
+    exploreModel.loginI(emailI, senhaI)
+        .then(function (resultado) {
+            if (resultado.length == 1) {
+                res.json({
+                    idIgreja: resultado[0].idIgreja,
+                    nomeIgreja: resultado[0].nomeIgreja,
+                    email: resultado[0].emailIgreja,
+                });
+            } else {
+                res.status(403).json({ erro: "Email e/ou senha inválidos!" });
+            }
+        })
+        .catch(function (erro) {
+            console.error("Erro ao autenticar:", erro);
+            res.status(500).json({ erro: "Erro interno no servidor." });
+        });
+}
+
 
 
 
 module.exports = {
-    curtir,contarCurtida,cadastroI,
+    curtir,contarCurtida,cadastroI,loginI,
 }
