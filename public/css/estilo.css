@@ -657,6 +657,14 @@ fieldset{
   padding: 0;
 width:auto;
 }
+.div_fildeset_2 fieldset{
+  padding: 0;
+width:auto;
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+}
 fieldset legend{
   font-size: 5vh;
   margin-left: 5%;
@@ -688,4 +696,16 @@ fieldset input:focus{
   text-align: center;
   border-radius:30px ;
   font-weight: 700;
+}
+.inpt_dt{
+width: 30%;
+}
+.select_cat{
+ height: 40%
+}
+.div_fildeset_2{
+  width: 33%;
+}
+.inpt_dt_hr{
+  width: 50%;
 }
