@@ -77,7 +77,7 @@
   </div>
 
   <!-- Botão de Envio -->
-  <button type="submit">Salvar Evento</button>
+  <button type="submit" onclick="enviar()">Salvar Evento</button>
   </div>
 
   <div id="container"></div>
@@ -87,45 +87,34 @@
 
 <script>
   function enviar() {  
-  var idIgreja = sessionStorage.ID_IGREJA
-    const formData = new FormData();
-    
-    formData.append('foto', foto.files[0]);   
-    formData.append('descricao', descricao_evento.value);  
-    formData.append('nome', Nome_evento.value);
-    formData.append('idIgreja', idIgreja);
-    formData.append('cep', cep_evento.value);    
-    formData.append('numero', numero.value);     
-    formData.append('data_hora', data_hora.value); 
-    formData.append('categoria', categoria.value);  
+  if(sessionStorage.ID_IGREJA != undefined){
 
-    fetch(`/postagem/${idIgreja}`, {  
+
+    var idIgreja = sessionStorage.ID_IGREJA
+
+const formatado = data_hora.value.replace('T', ' ') + ':00';
+
+const formData = new FormData();
+formData.append('foto', foto.files[0])
+formData.append('descricao', descricao_evento.value);  
+formData.append('nome', Nome_evento.value);
+formData.append('idIgreja', idIgreja);
+formData.append('cep', cep_evento.value);    
+formData.append('numero', numero.value);     
+formData.append('data_hora', formatado); 
+formData.append('categoria', categoria.value);  
+
+ 
+    fetch(`/postagem/post/${idIgreja}`, {  
       method: "POST",
       body: formData
     })
     .then(res => {
-      window.location = "./eventos.html";  
+      console.log("Cadastro do evento realizado");  
     })
     .catch(err => {
       console.log(err);  
     });
   }
+    }
 </script>
-
-<!-- // function enviar() {
-  //   const formData = new FormData();
-  //   formData.append('foto', foto.files[0])
-  //   formData.append('nome', nome.value)
-  //   formData.append('email', email.value)
-
-  //   fetch("/usuarios/cadastro", {
-  //     method: "POST",
-  //     body: formData
-  //   })
-  //     .then(res => {
-  //       window.location = "./perfil.html"
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     })
-  // } -->
