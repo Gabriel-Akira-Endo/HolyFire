@@ -17,7 +17,9 @@ var app = express();
 
 var usuarioRouter = require("./src/routes/usuarios");
 var qtdCurtidaRouter = require("./src/routes/qtdCurtida");
-var cadastro_loginRouter = require("./src/routes/cadastro_login")
+var cadastro_loginRouter = require("./src/routes/cadastro_login");
+var postagemRouter = require("./src/routes/postagem")
+var puxarPostRouter = require("./src/routes/puxarPost")
 
 
 app.use(express.json());
@@ -29,6 +31,8 @@ app.use(cors());
 app.use("/curtidas", usuarioRouter);
 app.use("/qtdCurtida", qtdCurtidaRouter);
 app.use("/cadastro_login", cadastro_loginRouter);
+app.use("/postagem", postagemRouter);
+app.use("/puxarPost", puxarPostRouter);
 
 
 

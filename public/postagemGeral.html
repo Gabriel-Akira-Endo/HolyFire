@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container"></div>
+</body>
+</html>
+<script>
+      function puxaTudo() {
+        fetch(`/puxarPost/puxar`)
+      .then(res => {
+        res.json().then(tudo => {
+          console.log(tudo)
+
+          for(var i = 0; i < tudo.length; i++) {
+            unico = tudo[i]
+
+            var nomeIgreja = unico.nomeIgreja
+            var email = unico.email
+            var nome= unico.nome
+            var cep = unico.cep
+            var num = unico.numero
+            var data_hora = unico.data_hora
+            var categoria = unico.categoria
+            var descricao = unico.descricao
+            var imagem_perfil = unico.imagem_evento
+            
+    container.innerHTML += `<div>
+    <h1>${nomeIgreja} - ${email}</h1>
+    <br>
+    <h2>${nome}</h2>
+    <p>${cep} num:${num}</p>
+    <p>${data_hora} categoria:${categoria}</p>
+    <br>
+    <p>${descricao}</p>
+    <img src='assets/uploads/${imagem_perfil}' alt="imagem de usuario">
+  </div>`
+
+          }
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    }
+</script>
