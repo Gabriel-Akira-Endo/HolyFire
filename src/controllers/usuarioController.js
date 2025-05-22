@@ -90,7 +90,6 @@ function loginI(req, res) {
 }
 
 function enviar(req, res) {
-
     var idIgreja = req.body.idIgreja
     const imagem = req.file.filename;
     const descricao = req.body.descricao;
@@ -99,10 +98,13 @@ function enviar(req, res) {
     const numero = req.body.numero;
     const data_hora = req.body.data_hora;
     const categoria = req.body.categoria;
-    exploreModel.enviar(idIgreja, descricao, nome, cep, numero, data_hora, categoria,imagem)
-        .then(resultado => {
+
+ exploreModel.enviar(idIgreja, descricao, nome, cep, numero, data_hora, categoria, imagem)
+        .then(resultado => {  // Alterei aqui para resultado
+            console.log("Insert realizado com sucesso:", resultado);
             res.status(201).send("Post enviado com sucesso controller");
         }).catch(err => {
+            console.error("Erro no envio do evento:", err);
             res.status(500).send(err);
         });
 }

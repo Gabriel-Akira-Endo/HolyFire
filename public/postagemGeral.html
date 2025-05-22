@@ -10,7 +10,10 @@
 </body>
 </html>
 <script>
-      function puxaTudo() {
+
+  puxaTudo()
+  
+  function puxaTudo() {
         fetch(`/puxarPost/puxar`)
       .then(res => {
         res.json().then(tudo => {

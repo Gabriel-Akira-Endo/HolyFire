@@ -69,6 +69,8 @@
     </fieldset>
   </div>
 
+
+
   <!-- Categoria (como SELECT) -->
   <div class="div_fildeset_2">
     <fieldset style="margin:0;">
@@ -130,16 +132,31 @@ formData.append('data_hora', formatado);
 formData.append('categoria', categoria.value);  
 
  
-    fetch(`/postagem/post/${idIgreja}`, {  
-      method: "POST",
-      body: formData
-    })
-    .then(res => {
-      console.log("Cadastro do evento realizado");  
-    })
-    .catch(err => {
-      console.log(err);  
+fetch(`/postagem/post/${idIgreja}`, {  
+  method: "POST",
+  body: formData
+})
+.then(res => {
+  if (res.ok) {
+    alert("Cadastro do evento realizado");
+      Nome_evento.value = "";
+  cep_evento.value = "";
+  numero.value = "";
+  data_hora.value = "";
+  categoria.value = "";
+  descricao_evento.value = "";
+  foto.value = "";
+    // limpar campos...
+  } else {
+    return res.text().then(texto => {
+      console.error("Erro no servidor:", texto);
+      alert("Erro ao cadastrar o evento.");
     });
   }
-    }
+})
+.catch(err => {
+  console.error("Erro de rede:", err);
+  alert("Erro de rede ao tentar cadastrar o evento.");
+});
+  }}
 </script>
