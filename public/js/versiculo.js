@@ -1,5 +1,5 @@
 
-var num = parseInt(Math.random()* 31 + 1)
+var num = parseInt(Math.random()* 30 + 1)
 var msg = ""
 if (num == 1) {
     msg = "Amados, amemos uns aos outros, pois o amor procede de Deus. (1 João 4:7)";

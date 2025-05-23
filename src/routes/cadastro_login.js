@@ -9,11 +9,11 @@ router.post("/cadastroI", function (req, res) {
 })
 
 router.post("/cadastroU", function (req, res) {
-    usuarioController.cadastroI(req, res)
+    usuarioController.cadastroU(req, res)
 })
 
 //Autenticar
-router.post("/loginU", function (req, res) {
+router.post("/loginI", function (req, res) {
     usuarioController.loginI(req, res)
 })
 

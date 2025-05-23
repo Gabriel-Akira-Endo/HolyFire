@@ -39,7 +39,7 @@
     <div class="div_login">
       <div class="texto_cima_cad"><u>Cadastro</u></div>
 
-      <div class="div_escolha_login" id="div_log_inicial" style="display: none;">
+      <div class="div_escolha_login" id="div_log_inicial" >
         <div class="botao_esolha" onclick="ir_igreja()">
           <div><img src="assets/imgs/Church.png" alt=""></div>
           <div class="texto_igreja">Igreja</div>
@@ -51,7 +51,7 @@
         </div>
       </div>
 
-      <div class="div_cad_igreja" style="display: flex; overflow-y: scroll;" id="div_log_i">
+      <div class="div_cad_igreja" style="display: none; overflow-y: scroll;" id="div_log_i">
         <div class="div_fildeset">
           <fieldset style="margin:0;">
             <legend>NOME</legend>
@@ -91,7 +91,13 @@
         <div id="botao_login" onclick="cad_igreja()">Confirmar</div>
       </div>
 
-      <div class="div_login_usuario" style="display: none;" id="div_log_u">
+      <div class="div_cad_usuario" style="display: none;" id="div_log_u">
+        <div class="div_fildeset">
+          <fieldset style="margin:0;">
+            <legend>Nome</legend>
+            <input type="text" placeholder="João Batista" id="nome_U">
+          </fieldset>
+        </div>
         <div class="div_fildeset">
           <fieldset style="margin:0;">
             <legend>EMAIL</legend>
@@ -101,10 +107,16 @@
         <div class="div_fildeset">
           <fieldset style="margin:0;">
             <legend>Senha</legend>
-            <input type="password" placeholder="12345Abençoado" id="senha_U">
+            <input type="password" placeholder="12345Abençoado" id="Senha_U">
           </fieldset>
         </div>
-        <div id="botao_login">ENTRAR</div>
+                <div class="div_fildeset">
+          <fieldset style="margin:0;">
+            <legend> Confirmar Senha</legend>
+            <input type="password" placeholder="12345Abençoado" id="conf_U">
+          </fieldset>
+        </div>
+        <div id="botao_login" onclick="cad_usuario()">Confirmar</div>
       </div>
 
     </div>
@@ -121,21 +133,80 @@
 </script>
 
 <script>
+
+
+
+
+
+
+
   function ir_igreja() {
 
+    div_log_i.classList.add("adicionar_anima")
     div_log_inicial.style.display = "none";
     div_log_i.style.display = "flex";
     div_log_u.style.display = "none";
   }
   function ir_usuario() {
 
-
     div_log_u.classList.add("adicionar_anima")
-
 
     div_log_inicial.style.display = "none";
     div_log_i.style.display = "none";
     div_log_u.style.display = "flex";
+  }
+
+  function cad_usuario() {
+
+    var nomeU = nome_U.value
+    var emailU = email_U.value
+    var SenhaU = Senha_U.value
+    var confSenhaU = conf_U.value
+
+    if (nomeU == `` || emailU == `` || SenhaU == `` || confSenhaU == `` ) {
+      alert(`Preencha todos os campos`)
+    } else if (nomeU.length > 45) {
+      alert(`O nome pode ter no maximo 45 letras`)
+    } else if (!emailU.includes('@') || !emailU.includes('.')) {
+      alert('O email deve conter @ e .')
+    } else if (SenhaU.length < 8) {
+      alert('A senha deve conter pelo menos 8 caracteres')
+    } else if (!SenhaU.includes("@") && !SenhaU.includes("$") && !SenhaU.includes(".") && !SenhaU.includes("!") && !SenhaU.includes("#") && !SenhaU.includes("%") && !SenhaU.includes("&") && !SenhaU.includes("*") && !SenhaU.includes("?")) {
+      alert('A senha deve conter pelo menos 1 caracter especial')
+    } else if (!SenhaU.includes("0") && !SenhaU.includes("1") && !SenhaU.includes("2") && !SenhaU.includes("3") && !SenhaU.includes("4") && !SenhaU.includes("5") && !SenhaU.includes("6") && !SenhaU.includes("7") && !SenhaU.includes("8") && !SenhaU.includes("9")) {
+      alert('A senha deve conter pelo menos 1 numero')
+    } else if (SenhaU !== confSenhaU) {
+      alert('Senha e confirmar senha precisam ser iguais')
+    } else {
+
+      //Envio de dados - Tipo POST(Envio)
+      fetch('/cadastro_login/cadastroU', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          nomeUServer: nomeU,
+          emailUServer: emailU,
+          SenhaUServer: SenhaU,
+        })
+      })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+            alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+
+            setTimeout(() => {
+              window.location = "login.html";
+            }, "2000");
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+          }
+        })
+    }
+
+
   }
 
   function cad_igreja() {
@@ -150,14 +221,14 @@
     // Validações
     if (nomeI == `` || cnpjI == `` || CEPI == `` || emailI == `` || SenhaI == `` || confSenhaI == ``) {
       alert(`Preencha todos os campos`)
-      } else if (nomeI.length > 45) {
-        alert(`O nome pode ter no maximo 45 letras`)
-      } else if (cnpjI.length > 14 ) {
-        alert(`O cnpj deve ter ao menos 14 caracteres`)
-      } else if (cnpjI.length < 14 ) {
-        alert(`O cnpj deve não pode ter mais que 14 caracteres`)
-      } else if (CEPI.length != 8 ) {
-        alert(`O cep deve ter exatamente 8 caracteres`)
+    } else if (nomeI.length > 45) {
+      alert(`O nome pode ter no maximo 45 letras`)
+    } else if (cnpjI.length > 14) {
+      alert(`O cnpj deve ter ao menos 14 caracteres`)
+    } else if (cnpjI.length < 14) {
+      alert(`O cnpj deve não pode ter mais que 14 caracteres`)
+    } else if (CEPI.length != 8) {
+      alert(`O cep deve ter exatamente 8 caracteres`)
     } else if (!emailI.includes('@') || !emailI.includes('.')) {
       alert('O email deve conter @ e .')
     } else if (SenhaI.length < 8) {

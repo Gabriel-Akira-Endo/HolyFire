@@ -20,7 +20,7 @@ function curtir(req, res) {
 
 }
 function contarCurtida(req, res) {
-    
+
 var idEvento = req.params.IdEvento;
 
     exploreModel.contarCurtida(idEvento)
@@ -90,6 +90,54 @@ function loginI(req, res) {
         });
 }
 
+function cadastroU(req, res) {
+    var nomeU = req.body.nomeUServer
+    var emailU = req.body.emailUServer
+    var senhaU = req.body.SenhaUServer
+
+    exploreModel.cadastroU(nomeU, emailU, senhaU)
+
+        .then(
+            function (resultado) {
+                res.json(resultado)
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                console.log(
+                    "\n Houve um erro ao realizar o cadastro! Erro: "
+                );
+                res.status(500).json(erro.sqlMessage)
+            }
+        )
+}
+function loginU(req, res) {
+
+    var emailI = req.body.emailIServer
+    var senhaI = req.body.senhaIServer
+
+    if (!emailI || !senhaI) {
+        return res.status(400).json({ erro: "Preencha todos os campos!" });
+    }
+
+    exploreModel.loginI(emailI, senhaI)
+        .then(function (resultado) {
+            if (resultado.length == 1) {
+                res.json({
+                    idIgreja: resultado[0].idIgreja,
+                    nomeIgreja: resultado[0].nomeIgreja,
+                    email: resultado[0].email,
+                });
+            } else {
+                res.status(403).json({ erro: "Email e/ou senha inválidos!" });
+            }
+        })
+        .catch(function (erro) {
+            console.error("Erro ao autenticar:", erro);
+            res.status(500).json({ erro: "Erro interno no servidor." });
+        });
+}
+
 function enviar(req, res) {
     var idIgreja = req.body.idIgreja
     const imagem = req.file.filename;
@@ -122,5 +170,5 @@ function puxaTudo(req, res) {
 
 
 module.exports = {
-    curtir, contarCurtida, cadastroI, loginI, enviar,puxaTudo,
+    curtir, contarCurtida, cadastroI, loginI, enviar,puxaTudo,cadastroU,loginU
 }

@@ -616,9 +616,21 @@ text-transform: uppercase;
 .div_cad_igreja fieldset input {
   font-size: 2vh;
 }
-.texto_cima_login{
-
+.div_cad_usuario{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 80%;
+  width: 100%;
 }
+.div_cad_usuario fieldset legend {
+  font-size: 3vh;
+}
+.div_cad_usuario fieldset input {
+  font-size: 2vh;
+}
+
 .div_login_igreja{
   display: flex;
   flex-direction: column;
@@ -626,6 +638,7 @@ text-transform: uppercase;
   justify-content: flex-start;
   height: 80%;
   width: 100%;
+    transform: translateY(-500px);
 }
 .div_login_usuario{
     display: flex;
