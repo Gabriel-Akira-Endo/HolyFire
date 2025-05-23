@@ -20,9 +20,10 @@ function curtir(req, res) {
 
 }
 function contarCurtida(req, res) {
-    var id = req.params.id;
+    
+var idEvento = req.params.IdEvento;
 
-    exploreModel.contarCurtida(id)
+    exploreModel.contarCurtida(idEvento)
         .then(
             resultado => {
                 res.status(200).json(resultado)
@@ -121,5 +122,5 @@ function puxaTudo(req, res) {
 
 
 module.exports = {
-    curtir, contarCurtida, cadastroI, loginI, enviar,puxaTudo
+    curtir, contarCurtida, cadastroI, loginI, enviar,puxaTudo,
 }

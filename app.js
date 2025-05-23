@@ -20,6 +20,7 @@ var qtdCurtidaRouter = require("./src/routes/qtdCurtida");
 var cadastro_loginRouter = require("./src/routes/cadastro_login");
 var postagemRouter = require("./src/routes/postagem")
 var puxarPostRouter = require("./src/routes/puxarPost")
+var like_deslikeRouter = require("./src/routes/like_deslike")
 
 
 app.use(express.json());
@@ -33,6 +34,7 @@ app.use("/qtdCurtida", qtdCurtidaRouter);
 app.use("/cadastro_login", cadastro_loginRouter);
 app.use("/postagem", postagemRouter);
 app.use("/puxarPost", puxarPostRouter);
+app.use("/like_deslike", like_deslikeRouter);
 
 
 

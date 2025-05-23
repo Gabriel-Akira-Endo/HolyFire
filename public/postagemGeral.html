@@ -1,38 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
+
 <body>
-    <div id="container"></div>
+  <div id="container"></div>
+  <button onclick="curtida()"></button>
 </body>
+
 </html>
 <script>
 
   puxaTudo()
-  
+
   function puxaTudo() {
-        fetch(`/puxarPost/puxar`)
+    fetch(`/puxarPost/puxar`)
       .then(res => {
         res.json().then(tudo => {
           console.log(tudo)
 
-          for(var i = 0; i < tudo.length; i++) {
+          for (var i = 0; i < tudo.length; i++) {
             unico = tudo[i]
-
+            var IdEvento = unico.IdEvento
             var nomeIgreja = unico.nomeIgreja
             var email = unico.email
-            var nome= unico.nome
+            var nome = unico.nome
             var cep = unico.cep
             var num = unico.numero
             var data_hora = unico.data_hora
             var categoria = unico.categoria
             var descricao = unico.descricao
             var imagem_perfil = unico.imagem_evento
-            
-    container.innerHTML += `<div>
+
+            // curtida(IdEvento)
+  
+
+            container.innerHTML += `<div>
+      <h1>${IdEvento}</h1>
     <h1>${nomeIgreja} - ${email}</h1>
     <br>
     <h2>${nome}</h2>
@@ -41,13 +49,75 @@
     <br>
     <p>${descricao}</p>
     <img src='assets/uploads/${imagem_perfil}' alt="imagem de usuario">
+    <button>Curtida</button>:
+    <div id="qtdCurtida_${IdEvento}"></div>
   </div>`
-
+            contarCurtida(IdEvento)
           }
         })
       })
       .catch(err => {
         console.log(err);
       })
-    }
+  }
+
+    function contarCurtida(IdEvento) {
+
+    fetch(`/qtdCurtida/${IdEvento}`)
+
+      .then(res => res.json())
+      .then(quantidade => {
+
+        var qtd = quantidade[0].qtd
+        console.log(`${IdEvento}:${qtd}`)
+                document.getElementById(`qtdCurtida_${IdEvento}`).innerText = qtd
+
+      })
+
+  }
+
+  // function curtida(IdEvento){
+  //    fetch(`/like_deslike/curtida/${IdEvento}`, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json"
+  //       },
+  //       body: JSON.stringify({
+  //         IdEventoServer: IdEvento,
+  //       })
+  //     })
+  // }
+  
+
+  
+// function curtida(idUsuario) {
+
+//     fetch(`/curtidas/${idUsuario}`, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({
+//         // crie um atributo que recebe o valor recuperado aqui
+//         // Agora vá para o arquivo routes/usuario.js
+//         idPostServer: idPost
+
+//       }),
+//     }).then(res => {
+//       console.log(res)
+//       contarCurtida(IdEvento)
+//     })
+  // function contarCurtida(IdEvento) {
+  //   fetch(`/qtdCurtida/${IdEvento}`)
+
+  //     .then(res => res.json())
+  //     .then(quantidade => {
+
+  //       var qtd = quantidade[0].qtd
+  //       console.log(`${IdEvento}:${qtd}`)
+  //       document.getElementById("")
+  //     })
+
+  // }
+  
 </script>

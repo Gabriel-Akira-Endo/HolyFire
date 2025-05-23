@@ -3,17 +3,17 @@ var database = require("../database/config")
 
 function curtir(idPost) {
     var instrucaoSql = `INSERT INTO curtida (
-    evento_idevento_like, fk_id_igreja_like, fk_id_usuario, dataCurtida
+    evento_idevento_like, fk_id_usuario, dataCurtida
 )
 VALUES (
-1,1,${idPost}, current_timestamp()
+ 1,${idPost}, current_timestamp()
 );`
     console.log("Executando a instrunção SQL: \n" + instrucaoSql)
     return database.executar(instrucaoSql)
 
 }
-function contarCurtida(id) {
-    var instrucaoSql = `select count(*) as qtd from curtida where evento_idevento_like = ${id};`
+function contarCurtida(idEvento) {
+    var instrucaoSql = `select count(*) as qtd from curtida where evento_idevento_like = ${idEvento};`
     console.log("Executando a instrunção SQL: \n" + instrucaoSql)
     return database.executar(instrucaoSql)
 
@@ -54,9 +54,9 @@ VALUES (
     return database.executar(instrucao);
 }
 function puxaTudo() {
-  var instrucao = 'select I.nomeIgreja, I.email, E.nome, E.cep, E.numero, E.data_hora, E.categoria, E.descricao, E.imagem_evento  from evento E join igreja I on E.igrejaEvento = I.idIgreja;'
-  return database.executar(instrucao);
+    var instrucao = "SELECT E.IdEvento, I.nomeIgreja, I.email, E.nome, E.cep, E.numero, E.data_hora, E.categoria, E.descricao, E.imagem_evento FROM evento E JOIN igreja I ON E.igrejaEvento = I.idIgreja WHERE E.data_hora > NOW(); "
+    return database.executar(instrucao);
 }
 module.exports = {
-    curtir, contarCurtida, cadastroI, loginI, enviar,puxaTudo
+    curtir, contarCurtida, cadastroI, loginI, enviar, puxaTudo
 }
