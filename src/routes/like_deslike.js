@@ -4,8 +4,11 @@ var router = express.Router();
 var usuarioController = require("../controllers/usuarioController")
 
 //Cadastrar
-router.post("/curtida/:idEvento", function (req, res) {
-    usuarioController.cadastroI(req, res)
+router.post("/curtida/:idEvento/:idUsuario", function (req, res) {
+    usuarioController.curtir(req, res)
+})
+router.post("/descurtida/:idEvento/:idUsuario", function (req, res) {
+    usuarioController.descurtir(req, res)
 })
 
 

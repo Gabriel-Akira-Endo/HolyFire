@@ -97,84 +97,83 @@
 </script>
 
 <script>
-function ir_igreja(){
+  function ir_igreja() {
 
-div_log_inicial.style.display = "none";
-div_log_i.style.display = "flex";
-div_log_u.style.display = "none";
-}
-function ir_usuario(){
-
-
-  div_log_u.classList.add("adicionar_anima")
+    div_log_inicial.style.display = "none";
+    div_log_i.style.display = "flex";
+    div_log_u.style.display = "none";
+  }
+  function ir_usuario() {
 
 
-div_log_inicial.style.display = "none";
-div_log_i.style.display = "none";
-div_log_u.style.display = "flex";
-}
+    div_log_u.classList.add("adicionar_anima")
 
 
-    function entrar_I() {
+    div_log_inicial.style.display = "none";
+    div_log_i.style.display = "none";
+    div_log_u.style.display = "flex";
+  }
 
 
-        var emailIVar = email_igreja.value;
-        var senhaIVar = senha_igreja.value;
+  function entrar_I() {
 
-        if (emailIVar == "" || senhaIVar == "") {
-          alert("Mensagem de erro para todos os campos em branco");
-            return false;
-        }
 
-        console.log("FORM LOGIN: ", emailIVar);
-        console.log("FORM SENHA: ", senhaIVar);
+    var emailIVar = email_igreja.value;
+    var senhaIVar = senha_igreja.value;
 
-        fetch("/cadastro_login/loginI", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailIServer: emailIVar,
-                senhaIServer: senhaIVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                  
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.ID_IGREJA = json.idIgreja;
-                    sessionStorage.NOME_IGREJA = json.nomeIgreja;
-                    sessionStorage.EMAIL_IGREJA = json.email;
-
-                    setTimeout(function () {
-                        alert("Login Bem sucedido")
-                        window.location = "post_copy.html";
-                    }, 1000); // apenas para exibir o loading
-
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
+    if (emailIVar == "" || senhaIVar == "") {
+      alert("Mensagem de erro para todos os campos em branco");
+      return false;
     }
 
+    console.log("FORM LOGIN: ", emailIVar);
+    console.log("FORM SENHA: ", senhaIVar);
+
+    fetch("/cadastro_login/loginI", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        emailIServer: emailIVar,
+        senhaIServer: senhaIVar
+      })
+    }).then(function (resposta) {
+      console.log("ESTOU NO THEN DO entrar()!")
+
+      if (resposta.ok) {
+        console.log(resposta);
+
+        resposta.json().then(json => {
+
+          console.log(json);
+          console.log(JSON.stringify(json));
+          sessionStorage.ID_IGREJA = json.idIgreja;
+          sessionStorage.NOME_IGREJA = json.nomeIgreja;
+          sessionStorage.EMAIL_IGREJA = json.email;
+
+          setTimeout(function () {
+            alert("Login Bem sucedido")
+            window.location = "post_copy.html";
+          }, 1000); // apenas para exibir o loading
+
+        });
+
+      } else {
+
+        console.log("Houve um erro ao tentar realizar o login!");
+
+        resposta.text().then(texto => {
+          console.error(texto);
+        });
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    })
+
+    return false;
+  }
 
 
 
@@ -184,66 +183,67 @@ div_log_u.style.display = "flex";
 
 
 
-    function entrar_u() {
+
+  function entrar_u() {
 
 
-        var emailUVar = email_Usuario.value;
-        var senhaUVar = senha_Usuario.value;
+    var emailUVar = email_Usuario.value;
+    var senhaUVar = senha_Usuario.value;
 
-        if (emailUVar == "" || senhaUVar == "") {
-          alert("Mensagem de erro para todos os campos em branco");
-            return false;
-        }
-
-        console.log("FORM LOGIN: ", emailUVar);
-        console.log("FORM SENHA: ", senhaUVar);
-
-        fetch("/cadastro_login/loginU", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailUServer: emailUVar,
-                senhaUServer: senhaUVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                  
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.ID_IGREJA = json.idIgreja;
-                    sessionStorage.NOME_IGREJA = json.nomeIgreja;
-                    sessionStorage.EMAIL_IGREJA = json.email;
-
-                    setTimeout(function () {
-                        alert("Login Bem sucedido")
-                        window.location = "postagemGeral.html";
-                    },200); // apenas para exibir o loading
-
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
+    if (emailUVar == "" || senhaUVar == "") {
+      alert("Mensagem de erro para todos os campos em branco");
+      return false;
     }
+
+    console.log("FORM LOGIN: ", emailUVar);
+    console.log("FORM SENHA: ", senhaUVar);
+
+    fetch("/cadastro_login/loginU", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        emailUServer: emailUVar,
+        senhaUServer: senhaUVar
+      })
+    }).then(function (resposta) {
+      console.log("ESTOU NO THEN DO entrar()!")
+
+      if (resposta.ok) {
+        console.log(resposta);
+
+        resposta.json().then(json => {
+          sessionStorage.clear();
+          console.log(json);
+          console.log(JSON.stringify(json));
+          sessionStorage.ID_USUARIO = json.idUsuario;
+          sessionStorage.NOME_USUARIO = json.nome;
+          sessionStorage.EMAIL_USUARIO = json.email;
+
+
+          setTimeout(function () {
+            alert("Login Bem sucedido")
+            window.location = "postagemGeral.html";
+          }, 200); // apenas para exibir o loading
+
+        });
+
+      } else {
+
+        console.log("Houve um erro ao tentar realizar o login!");
+
+        resposta.text().then(texto => {
+          console.error(texto);
+        });
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    })
+
+    return false;
+  }
 
 
 </script>
-

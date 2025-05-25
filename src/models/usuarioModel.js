@@ -1,13 +1,15 @@
 
 var database = require("../database/config")
 
-function curtir(idPost) {
-    var instrucaoSql = `INSERT INTO curtida (
-    evento_idevento_like, fk_id_usuario, dataCurtida
-)
-VALUES (
- 1,${idPost}, current_timestamp()
-);`
+function curtir(idEvento,idUsuario){
+    var instrucaoSql = `INSERT INTO curtida (fk_id_usuario, evento_idevento_like, dataCurtida) VALUES 
+    (${idUsuario},${idEvento},current_timestamp());`
+    console.log("Executando a instrunção SQL: \n" + instrucaoSql)
+    return database.executar(instrucaoSql)
+
+}
+function descurtir(idEvento,idUsuario){
+    var instrucaoSql = `DELETE FROM curtida WHERE fk_id_usuario = ${idUsuario} and evento_idevento_like = ${idEvento};`
     console.log("Executando a instrunção SQL: \n" + instrucaoSql)
     return database.executar(instrucaoSql)
 
@@ -41,7 +43,7 @@ function loginI(emailI, SenhaI) {
     return database.executar(instrucaoSql);
 }
 function loginU(emailU, senhaU) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", emailI, SenhaI)
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", emailU, emailU)
 
     var instrucaoSql = `
         SELECT idUsuario, nome, email FROM usuario WHERE email = '${emailU}' AND senha = '${senhaU}';`;
@@ -72,5 +74,5 @@ function puxaTudo() {
     return database.executar(instrucao);
 }
 module.exports = {
-    curtir, contarCurtida, cadastroI, loginI, enviar, puxaTudo,cadastroU
+    curtir, contarCurtida, cadastroI, loginI, enviar, puxaTudo,cadastroU,loginU,descurtir   
 }

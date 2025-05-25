@@ -1,8 +1,31 @@
 var exploreModel = require("../models/usuarioModel")
 
 function curtir(req, res) {
-    var idPost = req.body.idPostServer
-    exploreModel.curtir(idPost)
+  var idEvento = req.params.idEvento;
+  var idUsuario = req.params.idUsuario;
+
+    exploreModel.curtir(idEvento,idUsuario)
+        .then(
+            resultado => {
+                res.status(200).json(resultado)
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                console.log(
+                    "\nHouve um erro ao realizar a busca de dados dos Posts! Erro:",
+                    erro.sqlMessage
+                )
+                res.status(500).json(erro.sqlMessage)
+            }
+        )
+
+}
+function descurtir(req, res) {
+  var idEvento = req.params.idEvento;
+  var idUsuario = req.params.idUsuario;
+
+    exploreModel.descurtir(idEvento,idUsuario)
         .then(
             resultado => {
                 res.status(200).json(resultado)
@@ -120,13 +143,13 @@ function loginU(req, res) {
         return res.status(400).json({ erro: "Preencha todos os campos!" });
     }
 
-    exploreModel.loginU (emailU, senhaU)
+    exploreModel.loginU(emailU, senhaU)
         .then(function (resultado) {
             if (resultado.length == 1) {
                 res.json({
                     idUsuario: resultado[0].idUsuario,
-                    nomeUsuario: resultado[0].nome,
-                    emailUsuario: resultado[0].email,
+                    nome: resultado[0].nome,
+                    email: resultado[0].email,
                 });
             } else {
                 res.status(403).json({ erro: "Email e/ou senha inválidos!" });
@@ -170,5 +193,5 @@ function puxaTudo(req, res) {
 
 
 module.exports = {
-    curtir, contarCurtida, cadastroI, loginI, enviar,puxaTudo,cadastroU,loginU
+    curtir, contarCurtida, cadastroI, loginI, enviar,puxaTudo,cadastroU,loginU,descurtir
 }

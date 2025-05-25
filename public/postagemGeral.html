@@ -9,7 +9,6 @@
 
 <body>
   <div id="container"></div>
-  <button onclick="curtida()"></button>
 </body>
 
 </html>
@@ -37,21 +36,22 @@
             var imagem_perfil = unico.imagem_evento
 
             // curtida(IdEvento)
-  
+
 
             container.innerHTML += `<div>
-      <h1>${IdEvento}</h1>
-    <h1>${nomeIgreja} - ${email}</h1>
-    <br>
-    <h2>${nome}</h2>
-    <p>${cep} num:${num}</p>
-    <p>${data_hora} categoria:${categoria}</p>
-    <br>
-    <p>${descricao}</p>
-    <img src='assets/uploads/${imagem_perfil}' alt="imagem de usuario">
-    <button>Curtida</button>:
-    <div id="qtdCurtida_${IdEvento}"></div>
-  </div>`
+  <h1>${IdEvento}</h1>
+  <h1>${nomeIgreja} - ${email}</h1>
+  <br>
+  <h2>${nome}</h2>
+  <p>${cep} num:${num}</p>
+  <p>${data_hora} categoria:${categoria}</p>
+  <br>
+  <p>${descricao}</p>
+  <img src='assets/uploads/${imagem_perfil}' alt="imagem de usuario">
+  <button onclick="curtida(${IdEvento})">Curtida</button>
+  <div id="qtdCurtida_${IdEvento}"></div>
+</div>`;
+
             contarCurtida(IdEvento)
           }
         })
@@ -61,7 +61,7 @@
       })
   }
 
-    function contarCurtida(IdEvento) {
+  function contarCurtida(IdEvento) {
 
     fetch(`/qtdCurtida/${IdEvento}`)
 
@@ -70,43 +70,83 @@
 
         var qtd = quantidade[0].qtd
         console.log(`${IdEvento}:${qtd}`)
-                document.getElementById(`qtdCurtida_${IdEvento}`).innerText = qtd
+        document.getElementById(`qtdCurtida_${IdEvento}`).innerText = qtd
 
       })
 
   }
 
-  // function curtida(IdEvento){
-  //    fetch(`/like_deslike/curtida/${IdEvento}`, {
+  function curtida(IdEvento) {
+    var usuario = sessionStorage.ID_USUARIO;
+
+    fetch(`/like_deslike/curtida/${IdEvento}/${usuario}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        IdEventoServer: IdEvento,
+        IdUsuarioServer: usuario,
+      })
+    })
+      .then(res => {
+        if (res.ok) {
+          contarCurtida(IdEvento); // ✅ Atualiza a quantidade após a curtida
+        } else {
+          console.error("Erro ao registrar curtida.");
+          descurtir(usuario,IdEvento)
+        }
+      })
+      .catch(err => {
+        console.error("Erro na requisição de curtida:", err);
+      });
+  }
+  function  descurtir(usuario,IdEvento){
+
+    fetch(`/like_deslike/descurtida/${IdEvento}/${usuario}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        IdEventoServer: IdEvento,
+        IdUsuarioServer: usuario,
+      })
+    })
+      .then(res => {
+        if (res.ok) {
+          contarCurtida(IdEvento); // ✅ Atualiza a quantidade após a curtida
+        } else {
+          console.error("Erro ao descurtir.");
+        }
+      })
+      .catch(err => {
+        console.error("Erro na requisição de curtida:", err);
+      });
+  }
+  
+
+
+
+
+
+  // function curtida(idUsuario) {
+
+  //     fetch(`/curtidas/${idUsuario}`, {
   //       method: "POST",
   //       headers: {
-  //         "Content-Type": "application/json"
+  //         "Content-Type": "application/json",
   //       },
   //       body: JSON.stringify({
-  //         IdEventoServer: IdEvento,
-  //       })
+  //         // crie um atributo que recebe o valor recuperado aqui
+  //         // Agora vá para o arquivo routes/usuario.js
+  //         idPostServer: idPost
+
+  //       }),
+  //     }).then(res => {
+  //       console.log(res)
+  //       contarCurtida(IdEvento)
   //     })
-  // }
-  
-
-  
-// function curtida(idUsuario) {
-
-//     fetch(`/curtidas/${idUsuario}`, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({
-//         // crie um atributo que recebe o valor recuperado aqui
-//         // Agora vá para o arquivo routes/usuario.js
-//         idPostServer: idPost
-
-//       }),
-//     }).then(res => {
-//       console.log(res)
-//       contarCurtida(IdEvento)
-//     })
   // function contarCurtida(IdEvento) {
   //   fetch(`/qtdCurtida/${IdEvento}`)
 
@@ -119,5 +159,5 @@
   //     })
 
   // }
-  
+
 </script>
