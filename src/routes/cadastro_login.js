@@ -18,7 +18,7 @@ router.post("/loginI", function (req, res) {
 })
 
 router.post("/loginU", function (req, res) {
-    usuarioController.loginI(req, res)
+    usuarioController.loginU(req, res)
 })
 
 module.exports = router

@@ -64,7 +64,7 @@
             <input type="password" placeholder="12345Abençoado" id="senha_igreja">
           </fieldset>
         </div>
-        <div id="botao_login" onclick="entrar()">ENTRAR</div>
+        <div id="botao_login" onclick="entrar_I()">ENTRAR</div>
       </div>
 
       <div class="div_login_usuario" style="display: none;" id="div_log_u">
@@ -80,7 +80,7 @@
             <input type="password" placeholder="12345Abençoado" id="senha_Usuario">
           </fieldset>
         </div>
-        <div id="botao_login">ENTRAR</div>
+        <div id="botao_login" onclick="entrar_u()">ENTRAR</div>
       </div>
 
     </div>
@@ -115,7 +115,7 @@ div_log_u.style.display = "flex";
 }
 
 
-    function entrar() {
+    function entrar_I() {
 
 
         var emailIVar = email_igreja.value;
@@ -156,6 +156,75 @@ div_log_u.style.display = "flex";
                         alert("Login Bem sucedido")
                         window.location = "post_copy.html";
                     }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+
+
+
+
+
+
+
+
+
+    function entrar_u() {
+
+
+        var emailUVar = email_Usuario.value;
+        var senhaUVar = senha_Usuario.value;
+
+        if (emailUVar == "" || senhaUVar == "") {
+          alert("Mensagem de erro para todos os campos em branco");
+            return false;
+        }
+
+        console.log("FORM LOGIN: ", emailUVar);
+        console.log("FORM SENHA: ", senhaUVar);
+
+        fetch("/cadastro_login/loginU", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailUServer: emailUVar,
+                senhaUServer: senhaUVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                  
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.ID_IGREJA = json.idIgreja;
+                    sessionStorage.NOME_IGREJA = json.nomeIgreja;
+                    sessionStorage.EMAIL_IGREJA = json.email;
+
+                    setTimeout(function () {
+                        alert("Login Bem sucedido")
+                        window.location = "postagemGeral.html";
+                    },200); // apenas para exibir o loading
 
                 });
 

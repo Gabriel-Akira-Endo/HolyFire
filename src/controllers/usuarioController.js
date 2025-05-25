@@ -113,20 +113,20 @@ function cadastroU(req, res) {
 }
 function loginU(req, res) {
 
-    var emailI = req.body.emailIServer
-    var senhaI = req.body.senhaIServer
+    var emailU = req.body.emailUServer
+    var senhaU = req.body.senhaUServer
 
-    if (!emailI || !senhaI) {
+    if (!emailU || !senhaU) {
         return res.status(400).json({ erro: "Preencha todos os campos!" });
     }
 
-    exploreModel.loginI(emailI, senhaI)
+    exploreModel.loginU (emailU, senhaU)
         .then(function (resultado) {
             if (resultado.length == 1) {
                 res.json({
-                    idIgreja: resultado[0].idIgreja,
-                    nomeIgreja: resultado[0].nomeIgreja,
-                    email: resultado[0].email,
+                    idUsuario: resultado[0].idUsuario,
+                    nomeUsuario: resultado[0].nome,
+                    emailUsuario: resultado[0].email,
                 });
             } else {
                 res.status(403).json({ erro: "Email e/ou senha inválidos!" });
