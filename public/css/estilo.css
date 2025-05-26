@@ -722,3 +722,39 @@ width: 30%;
 .inpt_dt_hr{
   width: 80%;
 }
+.SobreMim{
+  height: 100vh;
+ width: 100%; 
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ background-color: #F1FAEE;
+}
+.pq_site{
+  color: black;
+  width:50%;
+  padding: 5%;
+  font-size: 3vh;
+}
+.foto_minha{
+  width: 50%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.foto_minha img{
+  width: 70%;
+  
+}
+.eu {
+  height: 20%;
+  color: #000;
+}
+.baixo_titulo{
+  height: 80%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
