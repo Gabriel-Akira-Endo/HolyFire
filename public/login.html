@@ -97,12 +97,13 @@
 </script>
 
 <script>
-  function ir_igreja() {
+function ir_igreja() {
+  div_log_inicial.style.display = "none";
+  div_log_i.style.display = "flex";
+  div_log_u.style.display = "none";
+      div_log_i.classList.add("adicionar_anima")
+}
 
-    div_log_inicial.style.display = "none";
-    div_log_i.style.display = "flex";
-    div_log_u.style.display = "none";
-  }
   function ir_usuario() {
 
 
@@ -154,7 +155,7 @@
 
           setTimeout(function () {
             alert("Login Bem sucedido")
-            window.location = "post_copy.html";
+            window.location = "post.html";
           }, 1000); // apenas para exibir o loading
 
         });

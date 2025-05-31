@@ -91,7 +91,15 @@
     })
       .then(res => {
         if (res.ok) {
-          contarCurtida(IdEvento); // ✅ Atualiza a quantidade após a curtida
+          contarCurtida(IdEvento); 
+        } else {
+          console.error("Erro ao registrar curtida.");
+          descurtir(usuario,IdEvento)
+        }
+      })
+      .then(res => {
+        if (res.ok) {
+          contarCurtida(IdEvento); 
         } else {
           console.error("Erro ao registrar curtida.");
           descurtir(usuario,IdEvento)
@@ -115,7 +123,7 @@
     })
       .then(res => {
         if (res.ok) {
-          contarCurtida(IdEvento); // ✅ Atualiza a quantidade após a curtida
+          contarCurtida(IdEvento); 
         } else {
           console.error("Erro ao descurtir.");
         }
@@ -125,39 +133,4 @@
       });
   }
   
-
-
-
-
-
-  // function curtida(idUsuario) {
-
-  //     fetch(`/curtidas/${idUsuario}`, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         // crie um atributo que recebe o valor recuperado aqui
-  //         // Agora vá para o arquivo routes/usuario.js
-  //         idPostServer: idPost
-
-  //       }),
-  //     }).then(res => {
-  //       console.log(res)
-  //       contarCurtida(IdEvento)
-  //     })
-  // function contarCurtida(IdEvento) {
-  //   fetch(`/qtdCurtida/${IdEvento}`)
-
-  //     .then(res => res.json())
-  //     .then(quantidade => {
-
-  //       var qtd = quantidade[0].qtd
-  //       console.log(`${IdEvento}:${qtd}`)
-  //       document.getElementById("")
-  //     })
-
-  // }
-
 </script>

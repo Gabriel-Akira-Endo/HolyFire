@@ -640,6 +640,14 @@ text-transform: uppercase;
   width: 100%;
     transform: translateY(-500px);
 }
+.div_cad_igreja_post{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 80%;
+  width: 100%;
+}
 .div_login_usuario{
     display: flex;
   flex-direction: column;
@@ -714,7 +722,8 @@ fieldset input:focus{
 width: 30%;
 }
 .select_cat{
- height: 40%
+ height: 50%;
+ width: 90%;
 }
 .div_fildeset_2{
   width: 33%;
