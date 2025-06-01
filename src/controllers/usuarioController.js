@@ -63,6 +63,49 @@ var idEvento = req.params.IdEvento;
         )
 
 }
+function curtidaIgreja(req, res) {
+
+var idIgreja = req.params.idIgreja;
+
+    exploreModel.curtidaIgreja(idIgreja)
+        .then(
+            resultado => {
+                res.status(200).json(resultado)
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                console.log(
+                    "\nHouve um erro ao realizar a busca de dados dos Posts! Erro:",
+                    erro.sqlMessage
+                )
+                res.status(500).json(erro.sqlMessage)
+            }
+        )
+    }
+function qtdEvento(req, res) {
+
+var idIgreja = req.params.idIgreja;
+
+    exploreModel.qtdEvento(idIgreja)
+        .then(
+            resultado => {
+                res.status(200).json(resultado)
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                console.log(
+                    "\nHouve um erro ao realizar a busca de dados dos Posts! Erro:",
+                    erro.sqlMessage
+                )
+                res.status(500).json(erro.sqlMessage)
+            }
+        )
+
+}
+
+
 function cadastroI(req, res) {
     var nomeI = req.body.nomeIServer
     var cnpjI = req.body.cnpjIServer
@@ -189,9 +232,19 @@ function puxaTudo(req, res) {
         res.status(500).send(err);
       });
 }
+function puxaTudoDash(req,res) {
+        var idIgreja = req.params.idIgreja
+  exploreModel.puxaTudoDash(idIgreja)
+    .then(
+      resultado => {
+        res.status(200).json(resultado);
+      }).catch(err => {
+        res.status(500).send(err);
+      });
+}
 
 
 
 module.exports = {
-    curtir, contarCurtida, cadastroI, loginI, enviar,puxaTudo,cadastroU,loginU,descurtir
+    curtir, contarCurtida, cadastroI, loginI, enviar,puxaTudo,cadastroU,loginU,descurtir,puxaTudoDash,curtidaIgreja,qtdEvento
 }

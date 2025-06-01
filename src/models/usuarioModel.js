@@ -20,6 +20,18 @@ function contarCurtida(idEvento) {
     return database.executar(instrucaoSql)
 
 }
+function curtidaIgreja(idIgreja) {
+    var instrucaoSql = `select count(*) as qtd from curtida join evento as e on e.idEvento = evento_idevento_like join igreja on e.igrejaEvento = idIgreja where idIgreja = ${idIgreja};`
+    console.log("Executando a instrunção SQL: \n" + instrucaoSql)
+    return database.executar(instrucaoSql)
+
+}
+function qtdEvento(idIgreja) {
+    var instrucaoSql = `select count(*) as qtd from evento as e join igreja on e.igrejaEvento = idIgreja where idIgreja = ${idIgreja};`
+    console.log("Executando a instrunção SQL: \n" + instrucaoSql)
+    return database.executar(instrucaoSql)
+
+}
 
 function cadastroI(nomeI, cnpjI, CEPI, emailI, SenhaI) {
     var instrucaoSql = `INSERT INTO igreja (nomeIgreja, cnpj, email, senha,cep)
@@ -72,7 +84,11 @@ VALUES (
 function puxaTudo() {
     var instrucao = "SELECT E.IdEvento, I.nomeIgreja, I.email, E.nome, E.cep, E.numero, E.data_hora, E.categoria, E.descricao, E.imagem_evento FROM evento E JOIN igreja I ON E.igrejaEvento = I.idIgreja WHERE E.data_hora > NOW(); "
     return database.executar(instrucao);
+}function puxaTudoDash(idIgreja) {
+    var instrucao = `SELECT E.IdEvento, I.nomeIgreja, I.email, E.nome, E.cep, E.numero, E.data_hora, E.categoria, E.descricao, E.imagem_evento FROM evento E JOIN igreja I ON E.igrejaEvento = I.idIgreja where I.idIgreja = ${idIgreja};`
+    return database.executar(instrucao);
 }
+
 module.exports = {
-    curtir, contarCurtida, cadastroI, loginI, enviar, puxaTudo,cadastroU,loginU,descurtir   
+    curtir, contarCurtida, cadastroI, loginI, enviar, puxaTudo,cadastroU,loginU,descurtir ,puxaTudoDash,curtidaIgreja,qtdEvento
 }
