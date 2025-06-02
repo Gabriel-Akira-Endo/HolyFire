@@ -1,0 +1,14 @@
+
+body {
+  margin: 0;
+  padding: 0;
+    background-color:white;
+    display: flex;
+    justify-content: center;
+    padding: 5%;
+}
+#div_mae_missio{
+    background-color: #1A262C;
+    width: 90%;
+    height: 80vh;
+}

@@ -45,8 +45,8 @@
   <!-- NOME DO EVENTO -->
   <div class="div_fildeset">
     <fieldset style="margin:0;">
-      <legend>NOME DO EVENTO</legend>
-      <input type="text" id="Nome_evento" required>
+      <legend>NOME DO MISSIONARIO</legend>
+      <input type="text" id="Nome_miss">
     </fieldset>
   </div>
   
@@ -55,8 +55,8 @@
   <div style="display: flex; flex-direction: row; width: 90%;justify-content: center;">
   <div class="div_fildeset_2">
     <fieldset style="margin:0;">
-      <legend>CEP</legend>
-      <input type="text" id="cep_evento" class="inpt_dt">Numero: <input type="text" id="numero" class="inpt_dt">
+      <legend>EMAIL</legend>
+      <input type="text" id="email_miss">
     </fieldset>
   </div>
 
@@ -64,8 +64,8 @@
   <!--data e hora -->
   <div class="div_fildeset_2">
     <fieldset style="margin:0;">
-      <legend>DATA E HORA</legend>
-      <input type="datetime-local" id="data_hora" class="inpt_dt_hr">
+      <legend>DATA DE NASCIMENTO</legend>
+      <input type="date" id="data_hora" class="inpt_dt_hr">
     </fieldset>
   </div>
 
@@ -74,13 +74,8 @@
   <!-- Categoria (como SELECT) -->
   <div class="div_fildeset_2">
     <fieldset style="margin:0;">
-      <legend>CATEGORIA</legend>
-      <select id="categoria" class="select_cat">
-        <option value="">Selecione uma categoria</option>
-        <option value="ebd">Escola Bíblica Dominical</option>
-        <option value="Evangelismo">Evangelismo</option>
-        <option value="Louvor">Louvor</option>
-        <option value="Retiro">Retiro</option>
+      <legend>TELL DO MISSIONARIO</legend>
+      <input type="text" id="tel_miss">
       </select>
     </fieldset>
   </div>
@@ -90,15 +85,29 @@
     <!-- descricao do evento -->
     <div class="div_fildeset">
       <fieldset style="margin:0;">
-        <legend>Descrição</legend>
-           <input type="text" id="descricao_evento">
+        <legend>INSTAGRAM MISSIONARIO</legend>
+           <input type="text" id="insta_miss">
       </fieldset>
+    </div>
+    <div style="width: 90%; display: flex; flex-direction: row;">
+        <div class="div_fildeset">
+          <fieldset style="margin:0;">
+            <legend>DESCRIÇÃO</legend>
+               <input type="text" id="descricao_miss">
+          </fieldset>
+        </div>
+            <div class="div_fildeset">
+            <fieldset style="margin:0;">
+                <legend>PEDIDOS DE ORAÇÃO</legend>
+                <input type="text" id="pedidos_miss">
+            </fieldset>
+            </div>
     </div>
 
   <!-- Imagem do Evento -->
   <div class="div_fildeset">
     <fieldset style="margin:0;">
-      <legend>IMAGEM DO EVENTO</legend>
+      <legend>IMAGEM DO MISSIONARIO </legend>
          <input name="foto" id="foto" type="file">
         </fieldset>
   </div>
@@ -122,8 +131,6 @@ function enviar() {
 
     var idIgreja = sessionStorage.ID_IGREJA
 
-const formatado = data_hora.value.replace('T', ' ') + ':00';
-
 const formData = new FormData();
 formData.append('foto', foto.files[0])
 formData.append('descricao', descricao_evento.value);  
@@ -141,7 +148,7 @@ fetch(`/postagem/post/${idIgreja}`, {
 })
 .then(res => {
   if (res.ok) {
-    alert("Cadastro do evento realizado");
+    alert("Cadastro do Missionario realizado");
       Nome_evento.value = "";
   cep_evento.value = "";
   numero.value = "";
@@ -159,7 +166,7 @@ fetch(`/postagem/post/${idIgreja}`, {
 })
 .catch(err => {
   console.error("Erro de rede:", err);
-  alert("Erro de rede ao tentar cadastrar o evento.");
+  alert("Erro de rede ao tentar cadastrar o missionario.");
 });
   }}
 </script>
