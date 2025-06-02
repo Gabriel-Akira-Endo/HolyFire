@@ -1,10 +1,10 @@
 var exploreModel = require("../models/usuarioModel")
 
 function curtir(req, res) {
-  var idEvento = req.params.idEvento;
-  var idUsuario = req.params.idUsuario;
+    var idEvento = req.params.idEvento;
+    var idUsuario = req.params.idUsuario;
 
-    exploreModel.curtir(idEvento,idUsuario)
+    exploreModel.curtir(idEvento, idUsuario)
         .then(
             resultado => {
                 res.status(200).json(resultado)
@@ -22,10 +22,10 @@ function curtir(req, res) {
 
 }
 function descurtir(req, res) {
-  var idEvento = req.params.idEvento;
-  var idUsuario = req.params.idUsuario;
+    var idEvento = req.params.idEvento;
+    var idUsuario = req.params.idUsuario;
 
-    exploreModel.descurtir(idEvento,idUsuario)
+    exploreModel.descurtir(idEvento, idUsuario)
         .then(
             resultado => {
                 res.status(200).json(resultado)
@@ -44,7 +44,7 @@ function descurtir(req, res) {
 }
 function contarCurtida(req, res) {
 
-var idEvento = req.params.IdEvento;
+    var idEvento = req.params.IdEvento;
 
     exploreModel.contarCurtida(idEvento)
         .then(
@@ -65,7 +65,7 @@ var idEvento = req.params.IdEvento;
 }
 function curtidaIgreja(req, res) {
 
-var idIgreja = req.params.idIgreja;
+    var idIgreja = req.params.idIgreja;
 
     exploreModel.curtidaIgreja(idIgreja)
         .then(
@@ -82,10 +82,10 @@ var idIgreja = req.params.idIgreja;
                 res.status(500).json(erro.sqlMessage)
             }
         )
-    }
+}
 function qtdEvento(req, res) {
 
-var idIgreja = req.params.idIgreja;
+    var idIgreja = req.params.idIgreja;
 
     exploreModel.qtdEvento(idIgreja)
         .then(
@@ -206,16 +206,16 @@ function loginU(req, res) {
 
 function enviar(req, res) {
     var idIgreja = req.body.idIgreja
-    const imagem = req.file.filename;
-    const descricao = req.body.descricao;
-    const nome = req.body.nome;
-    const cep = req.body.cep;
-    const numero = req.body.numero;
-    const data_hora = req.body.data_hora;
-    const categoria = req.body.categoria;
+    var imagem = req.file.filename;
+    var descricao = req.body.descricao;
+    var nome = req.body.nome;
+    var cep = req.body.cep;
+    var numero = req.body.numero;
+    var data_hora = req.body.dtHora;
+    var categoria = req.body.categoria;
 
- exploreModel.enviar(idIgreja, descricao, nome, cep, numero, data_hora, categoria, imagem)
-        .then(resultado => {  // Alterei aqui para resultado
+    exploreModel.enviar(idIgreja, descricao, nome, cep, numero, data_hora, categoria, imagem)
+        .then(resultado => { 
             console.log("Insert realizado com sucesso:", resultado);
             res.status(201).send("Post enviado com sucesso controller");
         }).catch(err => {
@@ -223,28 +223,51 @@ function enviar(req, res) {
             res.status(500).send(err);
         });
 }
-function puxaTudo(req, res) {
-  exploreModel.puxaTudo()
-    .then(
-      resultado => {
-        res.status(200).json(resultado);
-      }).catch(err => {
-        res.status(500).send(err);
-      });
+
+function missionario(req, res) {
+    var idIgreja = req.body.idIgreja
+    var imagem = req.file.filename;
+    var descricao = req.body.descricao
+    var nome = req.body.nome
+    var idIgreja = req.body.idIgreja
+    var tel = req.body.tel
+    var insta = req.body.insta
+    var data_nasc = req.body.data_nasc
+    var pedidos = req.body.pedidos
+    var email = req.body.email
+
+    exploreModel.missionario(idIgreja,descricao,nome,idIgreja,tel,insta,data_nasc,pedidos, imagem,email)
+        .then(resultado => { 
+            console.log("Insert realizado com sucesso:", resultado);
+            res.status(201).send("Missionario enviado com sucesso controller");
+        }).catch(err => {
+            console.error("Erro no envio do missionario:", err);
+            res.status(500).send(err);
+        });
 }
-function puxaTudoDash(req,res) {
-        var idIgreja = req.params.idIgreja
-  exploreModel.puxaTudoDash(idIgreja)
-    .then(
-      resultado => {
-        res.status(200).json(resultado);
-      }).catch(err => {
-        res.status(500).send(err);
-      });
+
+function puxaTudo(req, res) {
+    exploreModel.puxaTudo()
+        .then(
+            resultado => {
+                res.status(200).json(resultado);
+            }).catch(err => {
+                res.status(500).send(err);
+            });
+}
+function puxaTudoDash(req, res) {
+    var idIgreja = req.params.idIgreja
+    exploreModel.puxaTudoDash(idIgreja)
+        .then(
+            resultado => {
+                res.status(200).json(resultado);
+            }).catch(err => {
+                res.status(500).send(err);
+            });
 }
 
 
 
 module.exports = {
-    curtir, contarCurtida, cadastroI, loginI, enviar,puxaTudo,cadastroU,loginU,descurtir,puxaTudoDash,curtidaIgreja,qtdEvento
+    curtir, contarCurtida, cadastroI, loginI, enviar, puxaTudo, cadastroU, loginU, descurtir, puxaTudoDash, curtidaIgreja, qtdEvento, missionario
 }

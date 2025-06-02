@@ -38,13 +38,14 @@
 
   <div>
   <!-- ID Evento (geralmente auto-incremento, pode ser omitido no formulário) -->
+
   <div class="div_cad_igreja_post" id="div_log_i">
   <!-- Igreja do Evento -->
-
+    <span>CADASTRO IGREJA</span>
 
   <!-- NOME DO EVENTO -->
   <div class="div_fildeset">
-    <fieldset style="margin:0;">
+    <fieldset>
       <legend>NOME DO MISSIONARIO</legend>
       <input type="text" id="Nome_miss">
     </fieldset>
@@ -54,7 +55,7 @@
   <!-- CEP -->
   <div style="display: flex; flex-direction: row; width: 90%;justify-content: center;">
   <div class="div_fildeset_2">
-    <fieldset style="margin:0;">
+    <fieldset>
       <legend>EMAIL</legend>
       <input type="text" id="email_miss">
     </fieldset>
@@ -63,9 +64,9 @@
 
   <!--data e hora -->
   <div class="div_fildeset_2">
-    <fieldset style="margin:0;">
+    <fieldset>
       <legend>DATA DE NASCIMENTO</legend>
-      <input type="date" id="data_hora" class="inpt_dt_hr">
+      <input type="date" id="data_nasc" class="inpt_dt_hr">
     </fieldset>
   </div>
 
@@ -73,7 +74,7 @@
 
   <!-- Categoria (como SELECT) -->
   <div class="div_fildeset_2">
-    <fieldset style="margin:0;">
+    <fieldset>
       <legend>TELL DO MISSIONARIO</legend>
       <input type="text" id="tel_miss">
       </select>
@@ -84,20 +85,20 @@
 
     <!-- descricao do evento -->
     <div class="div_fildeset">
-      <fieldset style="margin:0;">
+      <fieldset>
         <legend>INSTAGRAM MISSIONARIO</legend>
            <input type="text" id="insta_miss">
       </fieldset>
     </div>
     <div style="width: 90%; display: flex; flex-direction: row;">
         <div class="div_fildeset">
-          <fieldset style="margin:0;">
+          <fieldset>
             <legend>DESCRIÇÃO</legend>
                <input type="text" id="descricao_miss">
           </fieldset>
         </div>
             <div class="div_fildeset">
-            <fieldset style="margin:0;">
+            <fieldset>
                 <legend>PEDIDOS DE ORAÇÃO</legend>
                 <input type="text" id="pedidos_miss">
             </fieldset>
@@ -106,13 +107,12 @@
 
   <!-- Imagem do Evento -->
   <div class="div_fildeset">
-    <fieldset style="margin:0;">
+    <fieldset>
       <legend>IMAGEM DO MISSIONARIO </legend>
          <input name="foto" id="foto" type="file">
         </fieldset>
   </div>
 
-  <!-- Botão de Envio -->
   <button type="submit" onclick="enviar()">Salvar Evento</button>
   </div>
 
@@ -133,34 +133,35 @@ function enviar() {
 
 const formData = new FormData();
 formData.append('foto', foto.files[0])
-formData.append('descricao', descricao_evento.value);  
-formData.append('nome', Nome_evento.value);
+formData.append('descricao',descricao_miss.value);  
+formData.append('nome',Nome_miss.value);
 formData.append('idIgreja', idIgreja);
-formData.append('cep', cep_evento.value);    
-formData.append('numero', numero.value);     
-formData.append('data_hora', formatado); 
-formData.append('categoria', categoria.value);  
+formData.append('tel', tel_miss.value);    
+formData.append('email', email_miss.value);    
+formData.append('insta', insta_miss.value);     
+formData.append('data_nasc',data_nasc.value ); 
+formData.append('pedidos', pedidos_miss.value);  
 
  
-fetch(`/postagem/post/${idIgreja}`, {  
+fetch(`/postagem/missionario/${idIgreja}`, {  
   method: "POST",
   body: formData
 })
 .then(res => {
   if (res.ok) {
     alert("Cadastro do Missionario realizado");
-      Nome_evento.value = "";
-  cep_evento.value = "";
-  numero.value = "";
-  data_hora.value = "";
-  categoria.value = "";
-  descricao_evento.value = "";
+      Nome_miss.value = "";
+  descricao_miss.value = "";
+  tel_miss.value = "";
+  pedidos_miss.value = "";
+  insta_miss.value = "";
+  data_nasc.value = "";
   foto.value = "";
     // limpar campos...
   } else {
     return res.text().then(texto => {
       console.error("Erro no servidor:", texto);
-      alert("Erro ao cadastrar o evento.");
+      alert("Erro ao cadastrar o missionario.");
     });
   }
 })

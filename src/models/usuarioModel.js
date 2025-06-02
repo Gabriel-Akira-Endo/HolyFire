@@ -81,6 +81,16 @@ VALUES (
 
     return database.executar(instrucao);
 }
+
+function missionario(idIgreja,descricao,nome,idIgreja,tel,insta,data_nasc,pedidos, imagem,email) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ")
+
+    const instrucao = `insert into Missionario values
+(default, "${idIgreja}", "${nome}", "${email}","${data_nasc}","${tel}","${insta}","${pedidos}","${descricao}","${imagem}"
+);  `;
+
+    return database.executar(instrucao);
+}
 function puxaTudo() {
     var instrucao = "SELECT E.IdEvento, I.nomeIgreja, I.email, E.nome, E.cep, E.numero, E.data_hora, E.categoria, E.descricao, E.imagem_evento FROM evento E JOIN igreja I ON E.igrejaEvento = I.idIgreja WHERE E.data_hora > NOW(); "
     return database.executar(instrucao);
@@ -90,5 +100,5 @@ function puxaTudo() {
 }
 
 module.exports = {
-    curtir, contarCurtida, cadastroI, loginI, enviar, puxaTudo,cadastroU,loginU,descurtir ,puxaTudoDash,curtidaIgreja,qtdEvento
+    curtir, contarCurtida, cadastroI, loginI, enviar, puxaTudo,cadastroU,loginU,descurtir ,puxaTudoDash,curtidaIgreja,qtdEvento,missionario
 }

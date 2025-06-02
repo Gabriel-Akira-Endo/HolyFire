@@ -6,5 +6,8 @@
     router.post('/post/:idIgreja', upload.single('foto'), (req, res) => {
     usuarioController.enviar(req, res);
     });
+    router.post('/missionario/:idIgreja', upload.single('foto'), (req, res) => {
+    usuarioController.missionario(req, res);
+    });
 
     module.exports = router;
