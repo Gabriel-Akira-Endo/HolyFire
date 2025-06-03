@@ -159,14 +159,54 @@ body {
 .box img {
   width: 150%;
 }
+.div_social{
+  height: 100vh;
+  width: 100%;
+  background-color: #F1FAEE;
+}
+#img_carrosel{
+  width: 100%;
+  height: 75%;
+  display: flex;
+  justify-content: center;
+  padding-top: 3%;
+}
 
-.social .container .boxes {
+#dentro_carrosel_div{
+width: 45%;
+height: 75%;
+background-size: cover;
+border: 5px solid black;
+}
+.adicionar_anima_carrosel {
+  animation: animado_carrosel 5s infinite;
+}
+
+
+@keyframes animado_carrosel {
+  0% {
+    transform: translateX(-800px);
+
+    opacity: 0
+  }
+
+  50% {
+    transform: translateX(0px);
+    opacity: 1
+  }
+  100% {
+    transform: translateX(1000px);
+    opacity: 0
+  }
+}
+
+.social .container .div_social .boxes {
   display: flex;
   justify-content: space-around;
   width: 100%;
   padding: 30px 0;
-  height: 100vh;
-  background-color: #F1FAEE;
+  height: 25%;
+
 }
 
 .social p {
@@ -840,3 +880,6 @@ fieldset input:focus {
   flex-direction: row;
   align-items: center;
 }
+
+
+/*teste*/  

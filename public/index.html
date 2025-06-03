@@ -51,8 +51,9 @@
 
   <div class="social">
     <div class="container">
-      <div class="boxes">
-        <div class="box">
+      <div class="div_social">
+        <div class="boxes">
+          <div class="box">
           <img src="assets/imgs/botaoMis.png">
           <h4>Missionario</h4>
         </div>
@@ -72,6 +73,11 @@
           <img src="assets/imgs/ebd.png">
           <h4>EBD</h4>
         </div>
+      </div>
+      <div id="img_carrosel">
+        <div id="dentro_carrosel_div" class="adicionar_anima_carrosel">
+        </div>
+      </div>
       </div>
     </div>
   </div>
@@ -133,3 +139,26 @@ Meu objetivo é divulgar eventos que possam tocar corações assim como o meu fo
   </div>
 </body>
 </html>
+
+<script>
+ setInterval(mudarDiv,5000)
+listaIMG =["post01.png","Shalom.png","euShalom.jpeg"]
+var i = 0
+
+function mudarDiv(){
+     console.log(listaIMG)
+     if(i == (listaIMG.length - 1)){
+       console.log("entrou aqui 2")
+       dentro_carrosel_div.style.backgroundImage= `url(../public/assets/imgs/${listaIMG[i]})`;
+       i = -1;  
+      }
+      else{
+        console.log("entrou aqui 1")
+        
+        dentro_carrosel_div.style.backgroundImage= `url(../public/assets/imgs/${listaIMG[i]})`;
+      }
+      i++;
+    }    
+      // dentro_carrosel_div.classList.add("adicionar_anima_carrosel")
+  
+</script>
