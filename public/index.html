@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
-<body>
+<body style="overflow-x: hidden;">
   <div class="header">
     <div class="container">
       <h1 class="titulo">HolyFire<img src="assets/imgs/logoPequena.png"></h1>
@@ -146,8 +146,11 @@ listaIMG =["post01.png","Shalom.png","euShalom.jpeg"]
 var i = 0
 
 function mudarDiv(){
-     console.log(listaIMG)
+     
+  console.log(listaIMG)
+
      if(i == (listaIMG.length - 1)){
+
        console.log("entrou aqui 2")
        dentro_carrosel_div.style.backgroundImage= `url(../public/assets/imgs/${listaIMG[i]})`;
        i = -1;  
@@ -159,6 +162,4 @@ function mudarDiv(){
       }
       i++;
     }    
-      // dentro_carrosel_div.classList.add("adicionar_anima_carrosel")
-  
 </script>

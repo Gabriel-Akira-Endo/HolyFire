@@ -185,17 +185,17 @@ border: 5px solid black;
 
 @keyframes animado_carrosel {
   0% {
-    transform: translateX(-800px);
+    transform: translateX(-100vh) scale(0.8);
 
     opacity: 0
   }
 
   50% {
-    transform: translateX(0px);
+    transform: translateX(0px) scale(1);
     opacity: 1
   }
   100% {
-    transform: translateX(1000px);
+    transform: translateX(100vh) scale(0.8);
     opacity: 0
   }
 }
