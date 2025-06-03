@@ -211,7 +211,7 @@ function enviar(req, res) {
     var nome = req.body.nome;
     var cep = req.body.cep;
     var numero = req.body.numero;
-    var data_hora = req.body.dtHora;
+    var data_hora = req.body.data_hora;
     var categoria = req.body.categoria;
 
     exploreModel.enviar(idIgreja, descricao, nome, cep, numero, data_hora, categoria, imagem)

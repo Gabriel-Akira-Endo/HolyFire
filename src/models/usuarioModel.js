@@ -68,16 +68,7 @@ function enviar(idIgreja, descricao, nome, cep, numero, data_hora, categoria, im
 
     const instrucao = `INSERT INTO evento (
     igrejaEvento, nome, cep, numero, data_hora, categoria, descricao, imagem_evento)
-VALUES (
-    '${idIgreja}', 
-    '${nome}', 
-    '${cep}', 
-    '${numero}', 
-    '${data_hora}', 
-    '${categoria}', 
-    '${descricao}', 
-	'${imagem}'
-);  `;
+VALUES ('${idIgreja}','${nome}','${cep}','${numero}','${data_hora}', '${categoria}', '${descricao}', '${imagem}');`
 
     return database.executar(instrucao);
 }
@@ -87,8 +78,7 @@ function missionario(idIgreja,descricao,nome,idIgreja,tel,insta,data_nasc,pedido
 
     const instrucao = `insert into Missionario values
 (default, "${idIgreja}", "${nome}", "${email}","${data_nasc}","${tel}","${insta}","${pedidos}","${descricao}","${imagem}"
-);  `;
-
+);`
     return database.executar(instrucao);
 }
 function puxaTudo() {
