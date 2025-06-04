@@ -186,7 +186,6 @@ border: 5px solid black;
 @keyframes animado_carrosel {
   0% {
     transform: translateX(-100vh) scale(0.8);
-
     opacity: 0
   }
 
@@ -794,7 +793,7 @@ fieldset legend {
 }
 
 fieldset input {
-  background-color: transparent;
+  background-color: white;
   border: 0;
   text-align: left;
   width: 93%;

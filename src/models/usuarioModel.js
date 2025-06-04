@@ -84,11 +84,18 @@ function missionario(idIgreja,descricao,nome,idIgreja,tel,insta,data_nasc,pedido
 function puxaTudo() {
     var instrucao = "SELECT E.IdEvento, I.nomeIgreja, I.email, E.nome, E.cep, E.numero, E.data_hora, E.categoria, E.descricao, E.imagem_evento FROM evento E JOIN igreja I ON E.igrejaEvento = I.idIgreja WHERE E.data_hora > NOW(); "
     return database.executar(instrucao);
-}function puxaTudoDash(idIgreja) {
+}
+
+function pusharMiss() {
+    var instrucao = "SELECT I.nomeIgreja, m.nome , m.email, m.instagram, (select timestampdiff(year, dt_Nasc, now()) from missionario) as idade , m.tel, m.pedidos, m.descricao, m.imagem FROM missionario m JOIN igreja I ON m.fk_igreja_miss = I.idIgreja; "
+    return database.executar(instrucao);
+}
+
+function puxaTudoDash(idIgreja) {
     var instrucao = `SELECT E.IdEvento, I.nomeIgreja, I.email, E.nome, E.cep, E.numero, E.data_hora, E.categoria, E.descricao, E.imagem_evento FROM evento E JOIN igreja I ON E.igrejaEvento = I.idIgreja where I.idIgreja = ${idIgreja};`
     return database.executar(instrucao);
 }
 
 module.exports = {
-    curtir, contarCurtida, cadastroI, loginI, enviar, puxaTudo,cadastroU,loginU,descurtir ,puxaTudoDash,curtidaIgreja,qtdEvento,missionario
+    curtir, contarCurtida, cadastroI, loginI, enviar, puxaTudo,cadastroU,loginU,descurtir ,puxaTudoDash,curtidaIgreja,qtdEvento,missionario,pusharMiss
 }

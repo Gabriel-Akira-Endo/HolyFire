@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/css/estilo.css">
-    <link rel="stylesheet" href="../public/css/missionarios.css">
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/missionarios.css">
     <title>Document</title>
 
 </head>
 
-<body>
-    <div id="div_mae_missio">
+<body style="overflow-x: hidden; width: 100%;background-color: aliceblue;">
+    <div id="div_pai_missio">
+    <!-- <div id="div_mae_missio">
         <div class="div_miss_esquerda">
             <div id="div_foto_miss"><img src="../public/assets/imgs/gabriel.jpg" alt=""></div>
             <div id="div_contatos">
@@ -33,8 +34,60 @@
                 repellendus dicta sint sapiente reprehenderit! Esse voluptates quasi aperiam aliquam quo nemo voluptatum
                 temporibus minus dolor?</div>
         </div>
-    </div>
-
+    </div> -->
+</div>
 </body>
 
 </html>
+<script>
+    
+  puxaTudo()
+
+  function puxaTudo() {
+    fetch(`/puxarPost/pusharMiss`)
+      .then(res => {
+        res.json().then(resposta => {
+          console.log(resposta)
+
+          for (var i = 0; i < resposta.length; i++) {
+            unico = resposta[i]
+
+            var nomeIgreja = unico.nomeIgreja
+            var email = unico.email
+            var nome = unico.nome
+            var tel = unico.tel
+            var instagram = unico.instagram
+            var Idade = unico.idade
+            var pedidos = unico.pedidos
+            var descricao = unico.descricao
+            var imagem_missionario = unico.imagem
+
+
+           div_pai_missio.innerHTML += `<div id="div_mae_missio">
+        <div class="div_miss_esquerda">
+            <div id="div_foto_miss"><img src="assets/uploads/${imagem_missionario}" alt=""></div>
+            <div id="div_contatos">
+                <div id="ct_Nome"><span>Nome:</span>${nome}</div>
+                <div id="ct_Idade"><span>Idade:</span>${Idade}</div>
+                <div id="ct_Tel"><span>Tel:</span>${tel}</div>
+                <div id="ct_Email"><span>Email:</span>${email}</div>
+                <div id="ct_Instagram"><span>Instagram:</span>@${instagram}</div>
+                <div id="ct_Igreja"><span>Igreja:</span>${nomeIgreja}</div>
+            </div>
+        </div>
+        <div class="div_miss_direita">
+
+            <div id="div_missao"><span>Missão:</span> <br>${descricao}</div>
+            <div id="div_pedidos"><span>Pedidos de oração:</span><br>
+            ${pedidos}</div>
+        </div>
+    </div>`
+          }
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+</script>

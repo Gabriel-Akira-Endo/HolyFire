@@ -255,6 +255,15 @@ function puxaTudo(req, res) {
                 res.status(500).send(err);
             });
 }
+function pusharMiss(req, res) {
+    exploreModel.pusharMiss()
+        .then(
+            resultado => {
+                res.status(200).json(resultado);
+            }).catch(err => {
+                res.status(500).send(err);
+            });
+}
 function puxaTudoDash(req, res) {
     var idIgreja = req.params.idIgreja
     exploreModel.puxaTudoDash(idIgreja)
@@ -269,5 +278,5 @@ function puxaTudoDash(req, res) {
 
 
 module.exports = {
-    curtir, contarCurtida, cadastroI, loginI, enviar, puxaTudo, cadastroU, loginU, descurtir, puxaTudoDash, curtidaIgreja, qtdEvento, missionario
+    curtir, contarCurtida, cadastroI, loginI, enviar, puxaTudo, cadastroU, loginU, descurtir, puxaTudoDash, curtidaIgreja, qtdEvento, missionario,pusharMiss
 }

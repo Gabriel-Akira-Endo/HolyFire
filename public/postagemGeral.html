@@ -19,11 +19,13 @@
   function puxaTudo() {
     fetch(`/puxarPost/puxar`)
       .then(res => {
-        res.json().then(tudo => {
-          console.log(tudo)
+        res.json().then(resposta => {
+          console.log(resposta)
 
-          for (var i = 0; i < tudo.length; i++) {
-            unico = tudo[i]
+          for (var i = 0; i < resposta.length; i++) {
+
+            unico = resposta[i]
+            
             var IdEvento = unico.IdEvento
             var nomeIgreja = unico.nomeIgreja
             var email = unico.email
