@@ -32,6 +32,12 @@ function qtdEvento(idIgreja) {
     return database.executar(instrucaoSql)
 
 }
+function qtdMiss(idIgreja) {
+    var instrucaoSql = `select count(*) as qtd from missionario as m join igreja on m.fk_igreja_miss = idIgreja where idIgreja = ${idIgreja};`
+    console.log("Executando a instrunção SQL: \n" + instrucaoSql)
+    return database.executar(instrucaoSql)
+
+}
 
 function cadastroI(nomeI, cnpjI, CEPI, emailI, SenhaI) {
     var instrucaoSql = `INSERT INTO igreja (nomeIgreja, cnpj, email, senha,cep)
@@ -97,5 +103,5 @@ function puxaTudoDash(idIgreja) {
 }
 
 module.exports = {
-    curtir, contarCurtida, cadastroI, loginI, enviar, puxaTudo,cadastroU,loginU,descurtir ,puxaTudoDash,curtidaIgreja,qtdEvento,missionario,pusharMiss
+    curtir, contarCurtida, cadastroI, loginI, enviar, puxaTudo,cadastroU,loginU,descurtir ,puxaTudoDash,curtidaIgreja,qtdEvento,missionario,pusharMiss,qtdMiss
 }

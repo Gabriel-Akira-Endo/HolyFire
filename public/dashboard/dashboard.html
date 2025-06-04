@@ -54,7 +54,7 @@
                     <div class="cima_kpi_container">
                         <div class="cima_kpi_esq">
                             <div class="titulo_kpis">Total de eventos</div>
-                            <div id="div_total_eventos" class="div_totais_dash">80</div>
+                            <div id="div_total_miss" class="div_totais_dash">80</div>
                         </div>
                         <div class="cima_kpi_dir">
                             <div class="fundo_icone">
@@ -192,6 +192,22 @@
                 var qtd = quantidade[0].qtd
                 console.log(`${qtd}`)
                     document.getElementById(`div_total_eventos`).innerText=`${qtd}`
+
+            })
+
+    }
+    function contarMissionario() {
+    
+        var idIgreja = sessionStorage.ID_IGREJA
+    
+        fetch(`/qtdCurtida/qtdMiss/${idIgreja}`)
+
+            .then(res => res.json())
+            .then(quantidade => {
+
+                var qtd = quantidade[0].qtd
+                console.log(`${qtd}`)
+                    document.getElementById(`div_total_miss`).innerText=`${qtd}`
 
             })
 

@@ -14,4 +14,7 @@ router.get("/curtidaIgreja/:idIgreja", function (req,res) {
 router.get("/qtdEvento/:idIgreja", function (req,res) {
     usuarioController.qtdEvento(req,res)
 })
+router.get("/qtdMiss/:idIgreja", function (req,res) {
+    usuarioController.qtdMiss(req,res)
+})
 module.exports = router
