@@ -32,8 +32,18 @@ function qtdEvento(idIgreja) {
     return database.executar(instrucaoSql)
 
 }
+
 function qtdMiss(idIgreja) {
     var instrucaoSql = `select count(*) as qtd from missionario as m join igreja on m.fk_igreja_miss = idIgreja where idIgreja = ${idIgreja};`
+    console.log("Executando a instrunção SQL: \n" + instrucaoSql)
+    return database.executar(instrucaoSql)
+}
+
+function qtdGraficos(idIgreja) {
+    var instrucaoSql = `SELECT 
+    e.categoria,
+    COUNT(c.evento_idevento_like) AS total FROM evento e join curtida c ON c.evento_idevento_like = e.idEvento
+WHERE e.igrejaEvento = ${idIgreja}  GROUP BY e.categoria;`
     console.log("Executando a instrunção SQL: \n" + instrucaoSql)
     return database.executar(instrucaoSql)
 
@@ -103,5 +113,5 @@ function puxaTudoDash(idIgreja) {
 }
 
 module.exports = {
-    curtir, contarCurtida, cadastroI, loginI, enviar, puxaTudo,cadastroU,loginU,descurtir ,puxaTudoDash,curtidaIgreja,qtdEvento,missionario,pusharMiss,qtdMiss
+    curtir, contarCurtida, cadastroI, loginI, enviar, puxaTudo,cadastroU,loginU,descurtir ,puxaTudoDash,curtidaIgreja,qtdEvento,missionario,pusharMiss,qtdMiss,qtdGraficos
 }

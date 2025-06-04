@@ -79,23 +79,14 @@
 </html>
 <script>
     const linha = document.getElementById(`grafico_temp_linha`)
-    const barra = document.getElementById(`grafico_barra_linha`)
 
-    new Chart(linha, {
-        type: 'line',
+   var grafico = new Chart(linha, {
+        type: 'bar',
         data: {
-            labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+            labels: ['Louvor', 'Evangelismo', 'EBD', 'Retiro'],
             datasets: [{
-                label: 'temperatura',
-                data: [30, 29, 28, 25, 22, 23],
-                borderWidth: 1
-            }, {
-                label: 'temperatura',
-                data: [40, 29, 28, 25, 22, 23],
-                borderWidth: 1
-            }, {
-                label: 'temperatura',
-                data: [80, 82, 80, 85, 80, 83],
+                label: 'qtdCurtidas Gerais',
+                data: [0,0,0,0],
                 borderWidth: 1
             }]
         }
@@ -106,6 +97,7 @@
     contarCurtidaIgreja()
     contarEventos()
     contarMissionario()
+    puxardadosGrafico()
 
     function puxaTudo() {
 
@@ -211,6 +203,50 @@
                 var qtd = quantidade[0].qtd
                 console.log(`${qtd}`)
                 document.getElementById(`div_total_miss`).innerText = `${qtd}`
+
+            })
+
+    }
+    function puxardadosGrafico() {
+
+        var idIgreja = sessionStorage.ID_IGREJA
+
+        fetch(`/qtdCurtida/qtdGraficos/${idIgreja}`)
+
+            .then(res => res.json())
+            .then(quantidade => {
+
+                for(var i = 0; i < 4; i++){
+                var qtd = quantidade[i].total
+                var cat = quantidade[i].categoria
+                console.log(`${cat}: ${qtd} aquiii`)
+                    
+
+                if(cat == "Louvor"){
+
+                     grafico.data.datasets[0].data[0] = qtd
+
+                    }
+
+                    else if(cat == "Evangelismo"){
+
+                    grafico.data.datasets[0].data[1] = qtd
+
+                    }
+
+                    if(cat == "ebd"){
+
+                    grafico.data.datasets[0].data[2] = qtd
+
+                    }
+                if(cat == "Retiro"){
+
+                    grafico.data.datasets[0].data[3] = qtd
+
+                }
+
+                    grafico.update()
+                }
 
             })
 

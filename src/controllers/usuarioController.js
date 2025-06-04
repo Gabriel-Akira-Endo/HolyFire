@@ -123,6 +123,27 @@ function qtdMiss(req, res) {
                 res.status(500).json(erro.sqlMessage)
             }
         )
+    }
+
+function qtdGraficos(req, res) {
+
+    var idIgreja = req.params.idIgreja;
+
+    exploreModel.qtdGraficos(idIgreja)
+        .then(
+            resultado => {
+                res.status(200).json(resultado)
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                console.log(
+                    "\nHouve um erro ao realizar a busca de dados dos Posts! Erro:",
+                    erro.sqlMessage
+                )
+                res.status(500).json(erro.sqlMessage)
+            }
+        )
 
 }
 
@@ -299,5 +320,5 @@ function puxaTudoDash(req, res) {
 
 
 module.exports = {
-    curtir, contarCurtida, cadastroI, loginI, enviar, puxaTudo, cadastroU, loginU, descurtir, puxaTudoDash, curtidaIgreja, qtdEvento, missionario,pusharMiss,qtdMiss
+    curtir, contarCurtida, cadastroI, loginI, enviar, puxaTudo, cadastroU, loginU, descurtir, puxaTudoDash, curtidaIgreja, qtdEvento, missionario,pusharMiss,qtdMiss,qtdGraficos
 }
