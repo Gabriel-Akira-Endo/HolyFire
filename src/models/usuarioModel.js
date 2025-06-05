@@ -98,7 +98,8 @@ function missionario(idIgreja,descricao,nome,idIgreja,tel,insta,data_nasc,pedido
     return database.executar(instrucao);
 }
 function puxaTudo() {
-    var instrucao = "SELECT E.IdEvento, I.nomeIgreja, I.email, E.nome, E.cep, E.numero, E.data_hora, E.categoria, E.descricao, E.imagem_evento FROM evento E JOIN igreja I ON E.igrejaEvento = I.idIgreja WHERE E.data_hora > NOW(); "
+    var instrucao = `SELECT E.IdEvento, I.nomeIgreja, I.email, E.nome, E.cep, E.numero,concat(day(data_hora) ,"/",month(data_hora),"/",year(data_hora)," ",hour(data_hora),":",minute(data_hora)) as  dtHr, E.categoria, 
+E.descricao, E.imagem_evento FROM evento E JOIN igreja I ON E.igrejaEvento = I.idIgreja WHERE E.data_hora > NOW(); `
     return database.executar(instrucao);
 }
 
@@ -108,7 +109,8 @@ function pusharMiss() {
 }
 
 function puxaTudoDash(idIgreja) {
-    var instrucao = `SELECT E.IdEvento, I.nomeIgreja, I.email, E.nome, E.cep, E.numero, E.data_hora, E.categoria, E.descricao, E.imagem_evento FROM evento E JOIN igreja I ON E.igrejaEvento = I.idIgreja where I.idIgreja = ${idIgreja};`
+    var instrucao = `SELECT E.IdEvento, I.nomeIgreja, I.email, E.nome, E.cep, E.numero,concat(day(data_hora) ,"/",month(data_hora),"/",year(data_hora)," ",hour(data_hora),":",minute(data_hora)) as  dtHr, E.categoria, 
+E.descricao, E.imagem_evento FROM evento E JOIN igreja I ON E.igrejaEvento = I.idIgreja where I.idIgreja = ${idIgreja};`
     return database.executar(instrucao);
 }
 

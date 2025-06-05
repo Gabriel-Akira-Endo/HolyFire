@@ -179,7 +179,7 @@ background-size: cover;
 border: 5px solid black;
 }
 .adicionar_anima_carrosel {
-  animation: animado_carrosel 5s infinite;
+  animation: animado_carrosel 4s infinite;
 }
 
 

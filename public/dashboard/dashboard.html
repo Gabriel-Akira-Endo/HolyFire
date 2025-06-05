@@ -80,12 +80,15 @@
 <script>
     const linha = document.getElementById(`grafico_temp_linha`)
 
+    const cores = ["#4DA6FF", "#1E90FF", "#007B8A", "#264E86"];
+
    var grafico = new Chart(linha, {
         type: 'bar',
         data: {
             labels: ['Louvor', 'Evangelismo', 'EBD', 'Retiro'],
             datasets: [{
                 label: 'qtdCurtidas Gerais',
+                backgroundColor: ["#4DA6FF", "#1E90FF", "#007B8A", "#264E86"],
                 data: [0,0,0,0],
                 borderWidth: 1
             }]
@@ -117,7 +120,7 @@
                         var nome = unico.nome
                         var cep = unico.cep
                         var num = unico.numero
-                        var data_hora = unico.data_hora
+                        var data_hora = unico.dtHr
                         var categoria = unico.categoria
                         var descricao = unico.descricao
                         var imagem_evento = unico.imagem_evento
@@ -234,12 +237,12 @@
 
                     }
 
-                    if(cat == "ebd"){
+                    else if(cat == "ebd"){
 
                     grafico.data.datasets[0].data[2] = qtd
 
                     }
-                if(cat == "Retiro"){
+                else if(cat == "Retiro"){
 
                     grafico.data.datasets[0].data[3] = qtd
 
