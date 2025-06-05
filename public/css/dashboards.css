@@ -1,3 +1,6 @@
+*{
+    margin: 0;
+}
 .rt_kpis {
     position: relative;
     width: 25%;
@@ -78,9 +81,20 @@
     width: 100%;
 }
 
-.div_eventos_postados {
+.div_eventos_postados_pai {
     width: 30%;
-    padding: 5%;
+    padding: 2%;
+    background-color: blue;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-y: hidden;
+}
+.div_eventos_postados {
+    width: 100%;
+    padding: 2%;
     background-color: blue;
     height: 100%;
     display: flex;
@@ -90,6 +104,11 @@
     overflow-y: scroll;
 }
 
+.span_titulos_eventos{
+    font-size: 6vh;
+    font-weight: 700;
+    margin-bottom: 5%;
+}
 .div_zona_esquerda {
     display: flex;
     flex-direction: column;
@@ -103,20 +122,19 @@
     display: flex;
     flex-direction: row;
     background-color: #1A262C;
-    ;
     padding: 5%;
 }
 
 .div_mae_post {
-    margin-top: 2%;
-    width: 75%;
-    height: 60%;
+    padding: 5%;
+    width: 65%;
+    height: 73vh;
     background-color: #D8D7D7;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2.5%;
+    margin-bottom: 50px;    
 }
 
 #img_dos_post {
@@ -127,9 +145,15 @@
     border-radius: 10px;
 }
 
-#img_dos_post img {
+.img_do_evento {
     width: 100%;
     height: 100%;
+    object-fit: cover;
+}
+
+.data img {
+    width: 5vh;
+    height: auto;
     object-fit: cover;
 }
 
@@ -176,7 +200,8 @@
 }
 
 .imagem_icone {
-    height: 50%;
+    height: auto;
+    width: 5vh;
 }
 
 .div_descricao {
@@ -188,7 +213,7 @@
 }
 
 .div_descricao img {
-    height: 95%;
+    height: 5vh;
     width: auto;
 }
 
@@ -214,14 +239,14 @@
 }
 
 .desc_post {
-    max-height: 80px;
+    height: 80px;
     overflow-y: scroll;
 
     scrollbar-width: none;
 }
 
 .div_dos_grafc {
-    padding: 5%;
+    padding-top: 5%;
     display: flex;
     justify-content: center;
     align-items: center;

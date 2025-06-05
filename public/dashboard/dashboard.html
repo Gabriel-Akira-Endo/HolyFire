@@ -70,10 +70,13 @@
                 <canvas id="grafico_temp_linha"></canvas>
             </div>
         </div>
-        <div class="div_eventos_postados" id="div_eventos">
+        <div class="div_eventos_postados_pai">
+            <span class="span_titulos_eventos">Todos eventos postados:</span>
+            <div id="div_eventos" class="div_eventos_postados"></div>
         </div>
     </div>
     </div>
+    
 </body>
 
 </html>
@@ -129,7 +132,7 @@
 
 
                         div_eventos.innerHTML += `<div class="div_mae_post">
-                <div id="img_dos_post"><img src="../assets/uploads/${imagem_evento}"
+                <div id="img_dos_post"><img src="../assets/uploads/${imagem_evento}" class = "img_do_evento">
                 </div>
                 <div id="Texto_de_baixo_post">
                     <div class="Linha_topo">
@@ -146,8 +149,8 @@
                             <span class="desc_post">${descricao}</span>
                         </div>
                         <div class="div_local_post">
-                            <img src="../assets/imgs/local.png" class="imagem_icone"><span
-                                style="font-size: 3.5vh;padding-left: 5%;">${cep}  Numero residencial:${num}</span>
+                            <img src="../assets/imgs/local.png" class="imagem_icone">
+                            <span style="font-size: 2.5vh;">${cep}  Numero residencial:${num}</span>
                         </div>
                     </div>
                 </div>
