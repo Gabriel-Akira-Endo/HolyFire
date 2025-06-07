@@ -8,7 +8,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: black;
+  background-color: white;
 }
 
 :root {
@@ -19,19 +19,45 @@ body {
   --tamanho-footer: 65px;
 }
 
+.titulo_pag_post{
+text-align: center;
+}
+.titulo_pag_post span{
+  text-align: center;
+  font-size: 12rem;
+  font-weight: 1000;
+  color: white;
+  width: 60%;
+  margin: 0;
+  padding: 0;
+  height: auto;
+  font-family: "Judson";
+  -webkit-text-stroke-width:4px;
+  -webkit-text-stroke-color: #1D3557;
+}
+.img_fundo_div_index{
+
+}
+
 .container {
   display: flex;
   width: 100%;
   margin: auto;
 }
-
+.navbar u{
+  font-size: 10vh;
+}
 .header {
   height: var(--tamanho-header);
   border-bottom: 2px solid #32b9cd;
 }
-
+.navbar_post_miss{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .header .container {
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   height: 100%;
   background: #1D3557;
@@ -39,6 +65,8 @@ body {
 }
 
 .header a {
+  font-weight: 700;
+  font-size: 2.5vh;
   text-decoration: none;
   color: #e3b062;
 }
@@ -56,7 +84,17 @@ body {
   height: 50%;
   width: 30%;
 }
-
+#div_do_logout{
+  font-size: 2vh;
+  font-weight: 700;
+  cursor: pointer;
+}
+#div_login_header{
+  display: flex;
+  flex-direction: row;
+  width:40%;
+  justify-content: space-between;
+}
 .navbar_pesquisa span {
   padding-left: 1%;
   display: flex;
@@ -75,7 +113,7 @@ body {
 }
 
 .navbar {
-  width: 300px;
+  width:30%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -105,7 +143,7 @@ body {
 .banner {
   height: var(--tamanho-banner);
   color: white;
-  background-image: url('../assets/imgs/fundo_indez.png');
+  background-image: url('../assets/imgs/fundo_index.png');
   background-size: cover;
 }
 

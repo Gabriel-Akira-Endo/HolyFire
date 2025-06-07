@@ -5,17 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/dashboards.css">
-    <link rel="stylesheet" href="../css/dashboards.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/estilo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>DashUsuario</title>
     <style>
     </style>
 </head>
 
-<body style="overflow-y: hidden; background-color: white    ;">
-
-    <div style="height: 100vh; width: 100%;display: flex; flex-direction: row;">
+<body style="overflow-y: hidden; background-color: white;">
+    <div class="header">
+    <div class="container">
+      <h1 class="titulo">HolyFire<img src="../assets/imgs/logoPequena.png"></h1>
+      <ul class="navbar">
+          <a href="post.html">Cadastrar Eventos</a>
+          <a href="missionarioCad.html">Cadastrar Missionarios</a>
+          <a href="dashboard.html">DashBoard</a>
+        <span style="font-size: 4vh; padding: 15px;font-weight: 500;">|</span>
+        <div id="div_login_header">          
+          <a href="login.html">Login</a>
+          <a href="cadastro.html">Cadastro</a>
+        </div>
+                <div id="div_do_logout">
+          <span onclick="logout()">LOGOUT</span>
+        </div>
+      </ul>
+    </div>
+  </div>
+    <div style="height: 80vh; width: 100%;display: flex; flex-direction: row;">
         <div class="div_zona_esquerda">
 
 
@@ -27,7 +44,7 @@
                         </div>
                         <div class="cima_kpi_dir">
                             <div class="fundo_icone">
-                                <i class="fa fa-calendar" style="font-size: 100%;color:#3E3ECF;"></i>
+                                <i class="fa-regular fa-thumbs-up"></i>
                             </div>
                         </div>
                     </div>
@@ -42,7 +59,7 @@
                         </div>
                         <div class="cima_kpi_dir">
                             <div class="fundo_icone">
-                                <i class="fa fa-calendar" style="font-size: 100%;color:#3E3ECF;"></i>
+                                <i class="fa-regular fa-calendar"></i>
                             </div>
                         </div>
                     </div>
@@ -57,7 +74,7 @@
                         </div>
                         <div class="cima_kpi_dir">
                             <div class="fundo_icone">
-                                <i class="fa fa-calendar" style="font-size: 100%;color:#3E3ECF;"></i>
+                                 <i class="fa-solid fa-bullseye"></i>
                             </div>
                         </div>
                     </div>
@@ -67,6 +84,9 @@
                 </div>
             </div>
             <div class="div_dos_grafc">
+                <div>
+                    <span>Total de curtidas por categoria</span>
+                </div>
                 <canvas id="grafico_temp_linha"></canvas>
             </div>
         </div>
@@ -81,6 +101,34 @@
 
 </html>
 <script>
+if(
+sessionStorage.EMAIL_IGREJA != undefined ||
+sessionStorage.ID_IGREJA != undefined ||
+sessionStorage.NOME_IGREJA != undefined || sessionStorage.length != 0
+){
+div_login_header.style.display = "none"
+div_do_logout.style.display = "flex"
+}
+else{
+div_login_header.style.display = "flex"
+div_do_logout.style.display = "none"
+}
+
+  function logout(){
+sessionStorage.clear()
+    alert(`Você deslogou da sessão (ao clicar em ok você será redirecionado a tela inicial)`)
+  window.location = "../index.html";
+  }
+
+
+
+
+
+
+
+
+
+
     const linha = document.getElementById(`grafico_temp_linha`)
 
     const cores = ["#4DA6FF", "#1E90FF", "#007B8A", "#264E86"];
@@ -90,7 +138,7 @@
         data: {
             labels: ['Louvor', 'Evangelismo', 'EBD', 'Retiro'],
             datasets: [{
-                label: 'qtdCurtidas Gerais',
+                label: '',
                 backgroundColor: ["#4DA6FF", "#1E90FF", "#007B8A", "#264E86"],
                 data: [0,0,0,0],
                 borderWidth: 1
@@ -148,11 +196,11 @@
                             <br>
                             <span class="desc_post">${descricao}</span>
                         </div>
+                        </div>
                         <div class="div_local_post">
                             <img src="../assets/imgs/local.png" class="imagem_icone">
                             <span style="font-size: 2.5vh;">${cep}  Numero residencial:${num}</span>
                         </div>
-                    </div>
                 </div>
             </div>`;
                     }

@@ -1,0 +1,156 @@
+#container{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    justify-content: center;
+}
+.div_pai_post {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: #1A262C;
+    padding: 5%;
+}
+
+.div_mae_post {
+    padding: 5%;
+    width: 30%;
+    height: 65vh;
+    background-color: #D8D7D7;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;    
+    position: relative;
+}
+
+#img_dos_post {
+    justify-content: flex-start;
+    border: 6px solid black;
+    width: 90%;
+    height: 40%;
+    border-radius: 10px;
+}
+
+.img_do_evento {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.data img {
+    width: 5vh;
+    height: auto;
+    object-fit: cover;
+}
+
+#Texto_de_baixo_post {
+    width: 100%;
+    margin-top: 5%;
+    height: 60%;
+}
+
+.div_de_pag_post {
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Linha_topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 20%;
+}
+
+.tag {
+    background-color: orange;
+    color: white;
+    width: auto;
+    text-align: center;
+    padding: 2%;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 2.5vh;
+}
+
+.data {
+    display: flex;
+    align-items: center;
+    font-size: 2vh;
+    color: #1D3557;
+    height: 100%;
+    font-weight: 700;
+
+}
+
+.imagem_icone {
+    height: auto;
+    width: 5vh;
+}
+
+.div_descricao {
+    margin-top: 5%;
+
+    height: 10%;
+    width: 100%;
+    color: #1D3557;
+}
+
+.div_descricao img {
+    height: 5vh;
+    width: auto;
+}
+
+.local_post {
+    height: 100%;
+    width: auto;
+}
+
+.local_post img {
+    height: 20%;
+}
+
+.div_local_post {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: row;
+    height: 70%;
+    width: 100%;
+}
+
+.div_desc_evento {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}
+
+.desc_post {
+    height: 80px;
+    overflow-y: scroll;
+
+    scrollbar-width: none;
+}
+.divCurtidas_absolut{
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    right: 5rem;
+    width: 100%;
+    bottom: 1rem;
+}
+.divCurtidas_absolut img{
+    width: 3vh;
+    height: auto;
+}
+.num_like{
+    font-weight:900 ;
+    font-size: 2.5vh;
+    margin-left: 1rem;
+}

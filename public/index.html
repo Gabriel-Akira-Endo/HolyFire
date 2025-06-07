@@ -18,29 +18,21 @@
   <div class="header">
     <div class="container">
       <h1 class="titulo">HolyFire<img src="assets/imgs/logoPequena.png"></h1>
-      <div class="navbar_pesquisa">
-        <span><img src="assets/imgs/icone_pesquisa.png" style="width: auto;height: 80%;"></span>
-        <input type="text" placeholder="buscar evento">
-      </div>
       <ul class="navbar">
-        <li class="agora">
-          <a href="#">Inicial</a>
-        </li>
-
-        <li>
+          <a href="index.html">Inicial</a>
+          <a href="postagemGeral.html">Eventos</a>
           <a href="missionarios.html">Missão</a>
-        </li>
-        <li>|</li>
-        <li>
+        <span style="font-size: 4vh; padding: 15px;font-weight: 500;">|</span>
+        <div id="div_login_header">          
           <a href="login.html">Login</a>
-        </li>
-        <li>
           <a href="cadastro.html">Cadastro</a>
-        </li>
+        </div>
+                <div id="div_do_logout">
+          <span onclick="logout()">LOGOUT</span>
+        </div>
       </ul>
     </div>
   </div>
-
   <div class="banner">
     <div class="container">
       <p>HolyFire </p>
@@ -126,7 +118,7 @@
       </u>
     </div>
     <div class="baixo_titulo">
-      <div class="foto_minha"> <img src="./assets/imgs/imagem_sobre_mim.png" alt=""></div>
+      <div class="foto_minha"> <img src="./assets/imgs/imagens_carrosel/imagem_sobre_mim.png" alt=""></div>
       <div class="pq_site"><Span style="font-size: 5vh;"><u>Olá! Bem-vindo ao HolyFire.</u></Span> <br><br>A ideia deste
         site nasceu após um momento de reflexão sobre o amor de Cristo e como eu Gabriel Akira tive meu primeiro contato
         com Ele. Foi através de um retiro cristão que tive meu primeiro encontro verdadeiro com Deus, uma experiência
@@ -149,6 +141,27 @@
 
 <script>
 
+if(
+sessionStorage.ID_USUARIO != undefined ||
+sessionStorage.NOME_USUARIO != undefined ||
+sessionStorage.EMAIL_USUARIO != undefined || sessionStorage.length != 0
+){
+div_login_header.style.display = "none"
+div_do_logout.style.display = "flex"
+}
+else{
+div_login_header.style.display = "flex"
+div_do_logout.style.display = "none"
+}
+
+  function logout(){
+sessionStorage.clear()
+    alert(`Você deslogou da sessão (ao clicar em ok a página sera recarregada)`)
+  window.location = "index.html";
+  }
+
+
+
   setInterval(mudarDiv, 4000)
 
   listaIMG = ["post01.png", "Shalom.png", "euShalom.jpeg"]
@@ -162,13 +175,13 @@
     if (i == (listaIMG.length - 1)) {
 
       console.log("entrou aqui 2")
-      dentro_carrosel_div.style.backgroundImage = `url(assets/imgs/${listaIMG[i]})`;
+      dentro_carrosel_div.style.backgroundImage = `url(assets/imgs/imagens_carrosel/${listaIMG[i]})`;
       i = -1;
     }
 
     else {
       console.log("entrou aqui 1")
-      dentro_carrosel_div.style.backgroundImage = `url(assets/imgs/${listaIMG[i]})`;
+      dentro_carrosel_div.style.backgroundImage = `url(assets/imgs/imagens_carrosel/${listaIMG[i]})`;
     }
 
     i++;

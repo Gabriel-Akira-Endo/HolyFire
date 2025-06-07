@@ -6,43 +6,32 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Upload</title>
-  <link rel="stylesheet" href="css/estilo.css">
+  <link rel="stylesheet" href="../css/estilo.css">
 </head>
 
 <body style="background-color: white;">
     <div class="header">
     <div class="container">
-      <h1 class="titulo">HolyFire<img src="assets/imgs/logoPequena.png"></h1>
-      <div class="navbar_pesquisa">
-        <span><img src="assets/imgs/icone_pesquisa.png" style="width: auto;height: 80%;"></span>
-        <input type="text" placeholder="buscar evento">
-      </div>
+      <h1 class="titulo">HolyFire<img src="../assets/imgs/logoPequena.png"></h1>
       <ul class="navbar">
-        <li class="agora">
-          <a href="index.html">Inicial</a>
-        </li>
-
-        <li>
-          <a href="simulador.html">Missão</a>
-        </li>
-        <li>|</li>
-        <li>
+          <a href="post.html">Cadastrar Eventos</a>
+          <a href="missionarioCad.html">Cadastrar Missionarios</a>
+          <a href="dashboard.html">DashBoard</a>
+        <span style="font-size: 4vh; padding: 15px;font-weight: 500;">|</span>
+        <div id="div_login_header">          
           <a href="login.html">Login</a>
-        </li>
-        <li>
           <a href="cadastro.html">Cadastro</a>
-        </li>
+        </div>
+                <div id="div_do_logout">
+          <span onclick="logout()">LOGOUT</span>
+        </div>
       </ul>
     </div>
   </div>
-
   <div>
-  <!-- ID Evento (geralmente auto-incremento, pode ser omitido no formulário) -->
   <div class="div_cad_igreja_post" id="div_log_i">
-  <!-- Igreja do Evento -->
+        <span>CADASTRO EVENTOS</span>
 
-
-  <!-- NOME DO EVENTO -->
   <div class="div_fildeset">
     <fieldset style="margin:0;">
       <legend>NOME DO EVENTO</legend>
@@ -50,8 +39,6 @@
     </fieldset>
   </div>
   
-
-  <!-- CEP -->
   <div style="display: flex; flex-direction: row; width: 90%;justify-content: center;">
   <div class="div_fildeset_2">
     <fieldset style="margin:0;">
@@ -60,8 +47,6 @@
     </fieldset>
   </div>
 
-
-  <!--data e hora -->
   <div class="div_fildeset_2">
     <fieldset style="margin:0;">
       <legend>DATA E HORA</legend>
@@ -70,9 +55,6 @@
     </fieldset>
   </div>
 
-
-
-  <!-- Categoria (como SELECT) -->
   <div class="div_fildeset_2">
     <fieldset style="margin:0;">
       <legend>CATEGORIA</legend>
@@ -87,8 +69,6 @@
   </div>
     </div>
 
-
-    <!-- descricao do evento -->
     <div class="div_fildeset">
       <fieldset style="margin:0;">
         <legend>Descrição</legend>
@@ -96,7 +76,6 @@
       </fieldset>
     </div>
 
-  <!-- Imagem do Evento -->
   <div class="div_fildeset">
     <fieldset style="margin:0;">
       <legend>IMAGEM DO EVENTO</legend>
@@ -104,7 +83,6 @@
         </fieldset>
   </div>
 
-  <!-- Botão de Envio -->
   <button type="submit" onclick="enviar()">Salvar Evento</button>
   </div>
 
@@ -115,10 +93,29 @@
 
 <script>
 
+if(
+sessionStorage.EMAIL_IGREJA != undefined ||
+sessionStorage.ID_IGREJA != undefined ||
+sessionStorage.NOME_IGREJA != undefined || sessionStorage.length != 0
+){
+div_login_header.style.display = "none"
+div_do_logout.style.display = "flex"
+}
+else{
+div_login_header.style.display = "flex"
+div_do_logout.style.display = "none"
+}
+
+  function logout(){
+sessionStorage.clear()
+    alert(`Você deslogou da sessão (ao clicar em ok você será redirecionado a tela inicial)`)
+  window.location = "../index.html";
+  }
+
 
 
 function enviar() {  
-  if(sessionStorage.ID_IGREJA != undefined){
+  if(sessionStorage.ID_IGREJA != undefined || sessionStorage){
 
 
     var idIgreja = sessionStorage.ID_IGREJA

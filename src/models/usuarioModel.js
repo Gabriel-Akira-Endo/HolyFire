@@ -104,7 +104,7 @@ E.descricao, E.imagem_evento FROM evento E JOIN igreja I ON E.igrejaEvento = I.i
 }
 
 function pusharMiss() {
-    var instrucao = "SELECT I.nomeIgreja, m.nome , m.email, m.instagram, (select timestampdiff(year, dt_Nasc, now()) from missionario) as idade , m.tel, m.pedidos, m.descricao, m.imagem FROM missionario m JOIN igreja I ON m.fk_igreja_miss = I.idIgreja; "
+    var instrucao = "SELECT I.nomeIgreja, m.nome , m.email, m.instagram, timestampdiff(year, dt_Nasc, now()) as idade , m.tel, m.pedidos, m.descricao, m.imagem FROM missionario m JOIN igreja I ON m.fk_igreja_miss = I.idIgreja; "
     return database.executar(instrucao);
 }
 

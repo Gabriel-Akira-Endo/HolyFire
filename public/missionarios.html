@@ -2,71 +2,70 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/missionarios.css">
-    <link rel="stylesheet" href="css/estilo.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/missionarios.css">
+  <link rel="stylesheet" href="css/estilo.css">
+  <title>Document</title>
 
 </head>
 
-<body style="overflow-x: hidden; width: 100%;background-color: aliceblue;">
-      <div class="header">
+<body class="body_miss" style="  margin: 0;
+  padding: 0;">
+  <div class="header">
     <div class="container">
       <h1 class="titulo">HolyFire<img src="assets/imgs/logoPequena.png"></h1>
-      <div class="navbar_pesquisa">
-        <span><img src="assets/imgs/icone_pesquisa.png" style="width: auto;height: 80%;"></span>
-        <input type="text" placeholder="buscar evento">
-      </div>
       <ul class="navbar">
-        <li class="agora">
-          <a href="#">Inicial</a>
-        </li>
-
-        <li>
+          <a href="index.html">Inicial</a>
+          <a href="postagemGeral.html">Eventos</a>
           <a href="missionarios.html">Missão</a>
-        </li>
-        <li>|</li>
-        <li>
+        <span style="font-size: 4vh; padding: 15px;font-weight: 500;">|</span>
+        <div id="div_login_header">          
           <a href="login.html">Login</a>
-        </li>
-        <li>
           <a href="cadastro.html">Cadastro</a>
-        </li>
+        </div>
+        <div id="div_do_logout">
+          <span onclick="logout()">LOGOUT</span>
+        </div>
       </ul>
     </div>
   </div>
-    <div id="div_pai_missio">
-    <!-- <div id="div_mae_missio">
-        <div class="div_miss_esquerda">
-            <div id="div_foto_miss"><img src="../public/assets/imgs/gabriel.jpg" alt=""></div>
-            <div id="div_contatos">
-                <div id="ct_Nome"><span>Nome:</span>Gabriel Siqueira Rolon</div>
-                <div id="ct_Idade"><span>Idade:</span>18</div>
-                <div id="ct_Tel"><span>Tel:</span>5511993662965</div>
-                <div id="ct_Email"><span>Email:</span>gabSiqueira@gmail.com</div>
-                <div id="ct_Instagram"><span>Instagram:</span>@gab_siqueira._</div>
-                <div id="ct_Igreja"><span>Igreja:</span>Holiness São Bernardo do Campo</div>
-            </div>
-        </div>
-        <div class="div_miss_direita">
-
-            <div id="div_missao"><span>Missão:</span> <br>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Quibusdam voluptatum provident reiciendis? Ducimus dolores repellendus quam? Quasi laboriosam iure
-                officiis, laborum inventore, nulla consequuntur eaque ipsam, sint numquam facilis impedit!</div>
-            <div id="div_pedidos"><span>Pedidos de oração:</span><br>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure laudantium, vero itaque sed porro
-                repellendus dicta sint sapiente reprehenderit! Esse voluptates quasi aperiam aliquam quo nemo voluptatum
-                temporibus minus dolor?</div>
-        </div>
-    </div> -->
+  <div class="div_pag_titulo_miss"><span class="titulo_pag_miss">Missionarios</span>
+     <div class="div_vers_miss"><span class="versiculo_miss">Anunciem a sua glória entre as nações,
+seus feitos maravilhosos entre todos os povos!
+<br>
+Salmos 96:3
+</span></div> 
+  
 </div>
+  <div id="div_pai_missio">
+  </div>
 </body>
 
 </html>
 <script>
-    
   puxaTudo()
+
+if(
+sessionStorage.ID_USUARIO != undefined ||
+sessionStorage.NOME_USUARIO != undefined ||
+sessionStorage.EMAIL_USUARIO != undefined || sessionStorage.length !== 0
+){
+div_login_header.style.display = "none"
+div_do_logout.style.display = "flex"
+}
+else{
+div_login_header.style.display = "flex"
+div_do_logout.style.display = "none"
+}
+
+
+  function logout(){
+sessionStorage.clear()
+    alert(`Você deslogou da sessão (ao clicar em ok a página sera recarregada)`)
+  window.location = "missionarios.html";
+  }
+
 
   function puxaTudo() {
     fetch(`/puxarPost/pusharMiss`)
@@ -88,7 +87,7 @@
             var imagem_missionario = unico.imagem
 
 
-           div_pai_missio.innerHTML += `<div id="div_mae_missio">
+            div_pai_missio.innerHTML += `<div id="div_mae_missio">
         <div class="div_miss_esquerda">
             <div id="div_foto_miss"><img src="assets/uploads/${imagem_missionario}" alt=""></div>
             <div id="div_contatos">
