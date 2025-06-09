@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/estilo.css">
+  <link rel="icon" href="assets/imgs/logoPequena.png" type="image/png">
   <title>Cadastro</title>
 </head>
 
@@ -13,11 +14,11 @@
     <div class="container">
       <h1 class="titulo">HolyFire<img src="assets/imgs/logoPequena.png"></h1>
       <ul class="navbar">
-          <a href="index.html">Inicial</a>
-          <a href="postagemGeral.html">Eventos</a>
-          <a href="missionarios.html">Missão</a>
+        <a href="index.html">Inicial</a>
+        <a href="postagemGeral.html">Eventos</a>
+        <a href="missionarios.html">Missão</a>
         <span style="font-size: 4vh; padding: 15px;font-weight: 500;">|</span>
-        <div id="div_login_header">          
+        <div id="div_login_header">
           <a href="login.html">Login</a>
           <a href="cadastro.html">Cadastro</a>
         </div>
@@ -29,7 +30,7 @@
     <div class="div_login">
       <div class="texto_cima_cad"><u>Cadastro</u></div>
 
-      <div class="div_escolha_login" id="div_log_inicial" >
+      <div class="div_escolha_login" id="div_log_inicial">
         <div class="botao_esolha" onclick="ir_igreja()">
           <div><img src="assets/imgs/Church.png" alt=""></div>
           <div class="texto_igreja">Igreja</div>
@@ -100,7 +101,7 @@
             <input type="password" placeholder="12345Abençoado" id="Senha_U">
           </fieldset>
         </div>
-                <div class="div_fildeset">
+        <div class="div_fildeset">
           <fieldset style="margin:0;">
             <legend> Confirmar Senha</legend>
             <input type="password" placeholder="12345Abençoado" id="conf_U">
@@ -153,14 +154,14 @@
     var SenhaU = Senha_U.value
     var confSenhaU = conf_U.value
 
-    if (nomeU == `` || emailU == `` || SenhaU == `` || confSenhaU == `` ) {
+    if (nomeU == `` || emailU == `` || SenhaU == `` || confSenhaU == ``) {
       alert(`Preencha todos os campos`)
     } else if (nomeU.length > 45) {
       alert(`O nome pode ter no maximo 45 letras`)
     } else if (!emailU.includes('@') || !emailU.includes('.')) {
       alert('O email deve conter @ e .')
-    }else if(emailU.length > 45){
-  alert("O email não pode conter mais q 45 caracteres")
+    } else if (emailU.length > 45) {
+      alert("O email não pode conter mais q 45 caracteres")
     } else if (SenhaU.length < 8) {
       alert('A senha deve conter pelo menos 8 caracteres')
     } else if (!SenhaU.includes("@") && !SenhaU.includes("$") && !SenhaU.includes(".") && !SenhaU.includes("!") && !SenhaU.includes("#") && !SenhaU.includes("%") && !SenhaU.includes("&") && !SenhaU.includes("*") && !SenhaU.includes("?")) {
@@ -171,7 +172,7 @@
       alert('Senha e confirmar senha precisam ser iguais')
     } else {
 
-      
+
       fetch('/cadastro_login/cadastroU', {
         method: "POST",
         headers: {
@@ -188,7 +189,7 @@
 
           if (resposta.ok) {
             alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
-              window.location = "login.html";
+            window.location = "login.html";
           } else {
             alert("Houve um erro ao tentar realizar o cadastro! email pode já ter sido cadastrado");
           }
@@ -214,12 +215,12 @@
       alert(`O nome pode ter no maximo 45 letras`)
     } else if (cnpjI.length != 14) {
       alert(`O cnpj deve ter exatamente 14 caracteres , não utilize caracteres apenas as letras e numeros`)
-    }  else if (CEPI.length != 8) {
+    } else if (CEPI.length != 8) {
       alert(`O cep deve ter exatamente 8 caracteres`)
     } else if (!emailI.includes('@') || !emailI.includes('.')) {
       alert('O email deve conter @ e .')
-    } else if(emailI.length > 45){
-  alert("O email não pode conter mais q 45 caracteres")
+    } else if (emailI.length > 45) {
+      alert("O email não pode conter mais q 45 caracteres")
     } else if (SenhaI.length < 8) {
       alert('A senha deve conter pelo menos 8 caracteres')
     } else if (!SenhaI.includes("@") && !SenhaI.includes("$") && !SenhaI.includes(".") && !SenhaI.includes("!") && !SenhaI.includes("#") && !SenhaI.includes("%") && !SenhaI.includes("&") && !SenhaI.includes("*") && !SenhaI.includes("?")) {
@@ -248,7 +249,7 @@
 
           if (resposta.ok) {
             alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
-              window.location = "login.html";
+            window.location = "login.html";
           } else {
             alert("Houve um erro ao tentar realizar o cadastro! email pode já ter sido cadastrado");
           }

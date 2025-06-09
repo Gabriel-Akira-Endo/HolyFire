@@ -6,23 +6,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/eventsos.css">
   <link rel="stylesheet" href="css/estilo.css">
+  <link rel="icon" href="assets/imgs/logoPequena.png" type="image/png">
   <title>Eventos</title>
 </head>
 
 <body style="overflow-x: hidden;overflow-y: scroll;">
-    <div class="header">
+  <div class="header">
     <div class="container">
       <h1 class="titulo">HolyFire<img src="assets/imgs/logoPequena.png"></h1>
       <ul class="navbar">
-          <a href="index.html">Inicial</a>
-          <a href="postagemGeral.html">Eventos</a>
-          <a href="missionarios.html">Missão</a>
+        <a href="index.html">Inicial</a>
+        <a href="postagemGeral.html">Eventos</a>
+        <a href="missionarios.html">Missão</a>
         <span style="font-size: 4vh; padding: 15px;font-weight: 500;">|</span>
-        <div id="div_login_header">          
+        <div id="div_login_header">
           <a href="login.html">Login</a>
           <a href="cadastro.html">Cadastro</a>
         </div>
-                <div id="div_do_logout">
+        <div id="div_do_logout">
           <span onclick="logout()">LOGOUT</span>
         </div>
       </ul>
@@ -39,23 +40,23 @@
 <script>
 
 
-if(
-sessionStorage.EMAIL_IGREJA != undefined ||
-sessionStorage.ID_IGREJA != undefined ||
-sessionStorage.NOME_IGREJA != undefined || sessionStorage.length !== 0
-){
-div_login_header.style.display = "none"
-div_do_logout.style.display = "flex"
-}
-else{
-div_login_header.style.display = "flex"
-div_do_logout.style.display = "none"
-}
+  if (
+    sessionStorage.EMAIL_IGREJA != undefined ||
+    sessionStorage.ID_IGREJA != undefined ||
+    sessionStorage.NOME_IGREJA != undefined || sessionStorage.length !== 0
+  ) {
+    div_login_header.style.display = "none"
+    div_do_logout.style.display = "flex"
+  }
+  else {
+    div_login_header.style.display = "flex"
+    div_do_logout.style.display = "none"
+  }
 
-  function logout(){
-sessionStorage.clear()
+  function logout() {
+    sessionStorage.clear()
     alert(`Você deslogou da sessão (ao clicar em ok a página sera recarregada)`)
-  window.location = "postagemGeral.html";
+    window.location = "postagemGeral.html";
   }
 
 
@@ -77,7 +78,7 @@ sessionStorage.clear()
           for (var i = 0; i < resposta.length; i++) {
 
             unico = resposta[i]
-            
+
             var IdEvento = unico.IdEvento
             var nomeIgreja = unico.nomeIgreja
             var email = unico.email
@@ -150,67 +151,68 @@ sessionStorage.clear()
   function curtida(IdEvento) {
     var usuario = sessionStorage.ID_USUARIO;
 
-    if(sessionStorage.ID_USUARIO == undefined ||
-sessionStorage.NOME_USUARIO == undefined ||
-sessionStorage.EMAIL_USUARIO == undefined || sessionStorage.length == 0){
-alert("O usuario precisa estar logado para curtir e descurtir os eventos")
-}
-else{
-  fetch(`/like_deslike/curtida/${IdEvento}/${usuario}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      IdEventoServer: IdEvento,
-      IdUsuarioServer: usuario,
-    })
-  })
-    .then(res => {
-      if (res.ok) {
-        contarCurtida(IdEvento); 
-      } else {;
-        descurtir(usuario,IdEvento)
-      }
-    })
-    .catch(err => {
-      console.error("Erro na requisição de curtida:", err);
-    });
-  }
-}
-
-
-
-  
-  function  descurtir(usuario,IdEvento){
-    if(sessionStorage.ID_USUARIO == undefined ||
-sessionStorage.NOME_USUARIO == undefined ||
-sessionStorage.EMAIL_USUARIO == undefined || sessionStorage.length == 0 ){
-alert("O usuario precisa estar logado para curtir e descurtir os eventos")
-}
-else{
-
-
-    fetch(`/like_deslike/descurtida/${IdEvento}/${usuario}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        IdEventoServer: IdEvento,
-        IdUsuarioServer: usuario,
+    if (sessionStorage.ID_USUARIO == undefined ||
+      sessionStorage.NOME_USUARIO == undefined ||
+      sessionStorage.EMAIL_USUARIO == undefined || sessionStorage.length == 0) {
+      alert("O usuario precisa estar logado para curtir e descurtir os eventos")
+    }
+    else {
+      fetch(`/like_deslike/curtida/${IdEvento}/${usuario}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          IdEventoServer: IdEvento,
+          IdUsuarioServer: usuario,
+        })
       })
-    })
-      .then(res => {
-        if (res.ok) {
-          contarCurtida(IdEvento); 
-        } else {
-          console.error("Erro ao descurtir.");
-        }
-      })
-      .catch(err => {
-        console.error("Erro na requisição de curtida:", err);
-      });
+        .then(res => {
+          if (res.ok) {
+            contarCurtida(IdEvento);
+          } else {
+            ;
+            descurtir(usuario, IdEvento)
+          }
+        })
+        .catch(err => {
+          console.error("Erro na requisição de curtida:", err);
+        });
+    }
   }
-}
+
+
+
+
+  function descurtir(usuario, IdEvento) {
+    if (sessionStorage.ID_USUARIO == undefined ||
+      sessionStorage.NOME_USUARIO == undefined ||
+      sessionStorage.EMAIL_USUARIO == undefined || sessionStorage.length == 0) {
+      alert("O usuario precisa estar logado para curtir e descurtir os eventos")
+    }
+    else {
+
+
+      fetch(`/like_deslike/descurtida/${IdEvento}/${usuario}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          IdEventoServer: IdEvento,
+          IdUsuarioServer: usuario,
+        })
+      })
+        .then(res => {
+          if (res.ok) {
+            contarCurtida(IdEvento);
+          } else {
+            console.error("Erro ao descurtir.");
+          }
+        })
+        .catch(err => {
+          console.error("Erro na requisição de curtida:", err);
+        });
+    }
+  }
 </script>
