@@ -439,20 +439,32 @@ border: 5px solid black;
 /* FOOTER */
 
 .footer {
-  background-color: #32b9cd;
+  background-color: #1D3557;
   height: 150px;
   color: #fff;
   display: flex;
   font-size: 15px;
-}
 
+}
 .footer .container {
   justify-content: center;
   text-align: center;
+  align-items: center;
+    width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1%;
+  position: relative;
 }
 
 .footer .container .version {
   font-size: 12px;
+}
+.footer_icones{
+  position: absolute;
+  width: 30%;
+left: 35%;
 }
 
 /* LOGIN */
