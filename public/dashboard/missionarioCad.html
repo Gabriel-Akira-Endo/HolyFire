@@ -15,7 +15,7 @@
       <h1 class="titulo">HolyFire<img src="../assets/imgs/logoPequena.png"></h1>
       <ul class="navbar">
           <a href="post.html">Cadastrar Eventos</a>
-          <a href="missionarioCad.html">Cadastrar Missionarios</a>
+          <a href="missionarioCad.html">Cadastrar Missionários</a>
           <a href="dashboard.html">DashBoard</a>
         <span style="font-size: 4vh; padding: 15px;font-weight: 500;">|</span>
         <div id="div_login_header">          
@@ -31,10 +31,10 @@
   <div>
 
   <div class="div_cad_igreja_post" id="div_log_i">
-    <span>CADASTRO MISSIONARIOS</span>
+    <span>CADASTRO MISSIONÁRIOS</span>
   <div class="div_fildeset">
     <fieldset>
-      <legend>NOME DO MISSIONARIO</legend>
+      <legend>NOME DO MISSIONÁRIO</legend>
       <input type="text" id="Nome_miss">
     </fieldset>
   </div>
@@ -55,7 +55,7 @@
 
   <div class="div_fildeset_2">
     <fieldset>
-      <legend>TELL DO MISSIONARIO</legend>
+      <legend>TELL DO MISSIONÁRIO</legend>
       <input type="text" id="tel_miss">
       </select>
     </fieldset>
@@ -64,15 +64,15 @@
 
     <div class="div_fildeset">
       <fieldset>
-        <legend>INSTAGRAM MISSIONARIO</legend>
+        <legend>INSTAGRAM MISSIONÁRIO</legend>
            <input type="text" id="insta_miss">
       </fieldset>
     </div>
     <div style="width: 90%; display: flex; flex-direction: row;">
         <div class="div_fildeset">
           <fieldset>
-            <legend>DESCRIÇÃO</legend>
-               <input type="text" id="descricao_miss">
+            <legend>DESCRIÇÃO DA MISSÃO</legend>
+               <input type="text" id="descricao_miss" >
           </fieldset>
         </div>
             <div class="div_fildeset">
@@ -86,11 +86,11 @@
   
   <div class="div_fildeset">
     <fieldset>
-      <legend>IMAGEM DO MISSIONARIO </legend>
+      <legend>IMAGEM DO MISSIONÁRIO </legend>
          <input name="foto" id="foto" type="file">
         </fieldset>
   </div>
-
+<br><br>
   <button type="submit" onclick="enviar()">Salvar Evento</button>
   </div>
 
@@ -128,6 +128,26 @@ function enviar() {
 
     var idIgreja = sessionStorage.ID_IGREJA
 
+
+
+    if(      Nome_miss.value == "" ||
+  descricao_miss.value == "" ||
+  tel_miss.value == "" ||
+  pedidos_miss.value == "" ||
+  insta_miss.value == "" ||
+  data_nasc.value == "" ||
+  foto.value == ""
+){
+alert("Preencha todos os campos")
+    }
+else if((tel_miss.value).length !=13){
+alert("Seu numero deve ter exatamente 13 numeros, como por exemplo: 5511912345678")
+}
+else if((email_miss.value).length > 45){
+  alert("O email não pode conter mais q 45 caracteres")
+}
+else{
+
 const formData = new FormData();
 formData.append('foto', foto.files[0])
 formData.append('descricao',descricao_miss.value);  
@@ -154,7 +174,7 @@ fetch(`/postagem/missionario/${idIgreja}`, {
   insta_miss.value = "";
   data_nasc.value = "";
   foto.value = "";
-    // limpar campos...
+
   } else {
     return res.text().then(texto => {
       console.error("Erro no servidor:", texto);
@@ -166,5 +186,10 @@ fetch(`/postagem/missionario/${idIgreja}`, {
   console.error("Erro de rede:", err);
   alert("Erro de rede ao tentar cadastrar o missionario.");
 });
+  
+}
+} 
+  else{
+    alert("Sua sessão de igreja não esta definida tente logar novamente")
   }}
 </script>

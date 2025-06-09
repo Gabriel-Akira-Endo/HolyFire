@@ -12,25 +12,15 @@
   <div class="header">
     <div class="container">
       <h1 class="titulo">HolyFire<img src="assets/imgs/logoPequena.png"></h1>
-      <div class="navbar_pesquisa">
-        <span><img src="assets/imgs/icone_pesquisa.png" style="width: auto;height: 80%;"></span>
-        <input type="text" placeholder="buscar evento">
-      </div>
       <ul class="navbar">
-        <li class="agora">
           <a href="index.html">Inicial</a>
-        </li>
-
-        <li>
-          <a href="simulador.html">Missão</a>
-        </li>
-        <li>|</li>
-        <li>
+          <a href="postagemGeral.html">Eventos</a>
+          <a href="missionarios.html">Missão</a>
+        <span style="font-size: 4vh; padding: 15px;font-weight: 500;">|</span>
+        <div id="div_login_header">          
           <a href="login.html">Login</a>
-        </li>
-        <li>
           <a href="cadastro.html">Cadastro</a>
-        </li>
+        </div>
       </ul>
     </div>
   </div>
@@ -163,7 +153,7 @@ function ir_igreja() {
 
       } else {
 
-        console.log("Houve um erro ao tentar realizar o login!");
+        alert("Houve um erro ao tentar realizar o login!");
 
         resposta.text().then(texto => {
           console.error(texto);
@@ -171,7 +161,7 @@ function ir_igreja() {
       }
 
     }).catch(function (erro) {
-      console.log(erro);
+      alert(erro);
     })
 
     return false;
@@ -233,7 +223,7 @@ function ir_igreja() {
 
       } else {
 
-        console.log("Houve um erro ao tentar realizar o login!");
+       alert("Houve um erro ao tentar realizar o login!");
 
         resposta.text().then(texto => {
           console.error(texto);
@@ -241,7 +231,7 @@ function ir_igreja() {
       }
 
     }).catch(function (erro) {
-      console.log(erro);
+      alert(erro);
     })
 
     return false;

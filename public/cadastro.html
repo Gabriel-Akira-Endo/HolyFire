@@ -12,25 +12,15 @@
   <div class="header">
     <div class="container">
       <h1 class="titulo">HolyFire<img src="assets/imgs/logoPequena.png"></h1>
-      <div class="navbar_pesquisa">
-        <span><img src="assets/imgs/icone_pesquisa.png" style="width: auto;height: 80%;"></span>
-        <input type="text" placeholder="buscar evento">
-      </div>
       <ul class="navbar">
-        <li class="agora">
           <a href="index.html">Inicial</a>
-        </li>
-
-        <li>
-          <a href="simulador.html">Missão</a>
-        </li>
-        <li>|</li>
-        <li>
+          <a href="postagemGeral.html">Eventos</a>
+          <a href="missionarios.html">Missão</a>
+        <span style="font-size: 4vh; padding: 15px;font-weight: 500;">|</span>
+        <div id="div_login_header">          
           <a href="login.html">Login</a>
-        </li>
-        <li>
           <a href="cadastro.html">Cadastro</a>
-        </li>
+        </div>
       </ul>
     </div>
   </div>
@@ -61,7 +51,7 @@
         <div class="div_fildeset">
           <fieldset style="margin:0;">
             <legend>CNPJ</legend>
-            <input type="text" placeholder="12.345.678/0001-95" id="cnpj_igreja">
+            <input type="text" placeholder="12345678000195" id="cnpj_igreja">
           </fieldset>
         </div>
         <div class="div_fildeset">
@@ -169,6 +159,8 @@
       alert(`O nome pode ter no maximo 45 letras`)
     } else if (!emailU.includes('@') || !emailU.includes('.')) {
       alert('O email deve conter @ e .')
+    }else if(emailU.length > 45){
+  alert("O email não pode conter mais q 45 caracteres")
     } else if (SenhaU.length < 8) {
       alert('A senha deve conter pelo menos 8 caracteres')
     } else if (!SenhaU.includes("@") && !SenhaU.includes("$") && !SenhaU.includes(".") && !SenhaU.includes("!") && !SenhaU.includes("#") && !SenhaU.includes("%") && !SenhaU.includes("&") && !SenhaU.includes("*") && !SenhaU.includes("?")) {
@@ -198,7 +190,7 @@
             alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
               window.location = "login.html";
           } else {
-            throw "Houve um erro ao tentar realizar o cadastro!";
+            alert("Houve um erro ao tentar realizar o cadastro! email pode já ter sido cadastrado");
           }
         })
     }
@@ -220,14 +212,14 @@
       alert(`Preencha todos os campos`)
     } else if (nomeI.length > 45) {
       alert(`O nome pode ter no maximo 45 letras`)
-    } else if (cnpjI.length > 14) {
-      alert(`O cnpj deve ter ao menos 14 caracteres`)
-    } else if (cnpjI.length < 14) {
-      alert(`O cnpj deve não pode ter mais que 14 caracteres`)
-    } else if (CEPI.length != 8) {
+    } else if (cnpjI.length != 14) {
+      alert(`O cnpj deve ter exatamente 14 caracteres , não utilize caracteres apenas as letras e numeros`)
+    }  else if (CEPI.length != 8) {
       alert(`O cep deve ter exatamente 8 caracteres`)
     } else if (!emailI.includes('@') || !emailI.includes('.')) {
       alert('O email deve conter @ e .')
+    } else if(emailI.length > 45){
+  alert("O email não pode conter mais q 45 caracteres")
     } else if (SenhaI.length < 8) {
       alert('A senha deve conter pelo menos 8 caracteres')
     } else if (!SenhaI.includes("@") && !SenhaI.includes("$") && !SenhaI.includes(".") && !SenhaI.includes("!") && !SenhaI.includes("#") && !SenhaI.includes("%") && !SenhaI.includes("&") && !SenhaI.includes("*") && !SenhaI.includes("?")) {
@@ -238,7 +230,6 @@
       alert('Senha e confirmar senha precisam ser iguais')
     } else {
 
-      //Envio de dados - Tipo POST(Envio)
       fetch('/cadastro_login/cadastroI', {
         method: "POST",
         headers: {
@@ -257,8 +248,9 @@
 
           if (resposta.ok) {
             alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+              window.location = "login.html";
           } else {
-            throw "Houve um erro ao tentar realizar o cadastro!";
+            alert("Houve um erro ao tentar realizar o cadastro! email pode já ter sido cadastrado");
           }
         })
     }

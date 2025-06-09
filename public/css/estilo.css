@@ -274,7 +274,11 @@ border: 5px solid black;
   display: flex;
   justify-content: flex-end;
 }
-
+.div_email{
+  color: #1A262C;
+  font-size: 2vh;
+  font-weight: 700;
+}
 .div_img_even img {
   width: 80%;
 }

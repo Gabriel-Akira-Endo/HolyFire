@@ -15,7 +15,7 @@
       <h1 class="titulo">HolyFire<img src="../assets/imgs/logoPequena.png"></h1>
       <ul class="navbar">
           <a href="post.html">Cadastrar Eventos</a>
-          <a href="missionarioCad.html">Cadastrar Missionarios</a>
+          <a href="missionarioCad.html">Cadastrar Missionários</a>
           <a href="dashboard.html">DashBoard</a>
         <span style="font-size: 4vh; padding: 15px;font-weight: 500;">|</span>
         <div id="div_login_header">          
@@ -35,7 +35,7 @@
   <div class="div_fildeset">
     <fieldset style="margin:0;">
       <legend>NOME DO EVENTO</legend>
-      <input type="text" id="Nome_evento" required>
+      <input type="text" id="Nome_evento" >
     </fieldset>
   </div>
   
@@ -43,7 +43,7 @@
   <div class="div_fildeset_2">
     <fieldset style="margin:0;">
       <legend>CEP</legend>
-      <input type="text" id="cep_evento" class="inpt_dt">Numero: <input type="text" id="numero" class="inpt_dt">
+      <input type="number" id="cep_evento" class="inpt_dt">Numero residencial: <input type="number" id="numero" class="inpt_dt">
     </fieldset>
   </div>
 
@@ -72,7 +72,7 @@
     <div class="div_fildeset">
       <fieldset style="margin:0;">
         <legend>Descrição</legend>
-           <input type="text" id="descricao_evento">
+           <input type="text" id="descricao_evento" >
       </fieldset>
     </div>
 
@@ -115,9 +115,33 @@ sessionStorage.clear()
 
 
 function enviar() {  
-  if(sessionStorage.ID_IGREJA != undefined || sessionStorage){
+  if(sessionStorage.ID_IGREJA != undefined){
+    var cep = cep_evento.value
+
+    if(
+descricao_evento.value == "" ||
+Nome_evento.value == "" ||
+cep_evento.value == "" ||
+numero.value == "" ||
+dtHora == "" ||
+categoria.value == "" ||
+foto.value == "" ||
+ipt_hora.value == "" ||
+ipt_data.value == ""
+    ){
+      alert("Preencha todos os campos para cadastror o evento")
+    }
+
+    else if(cep.length != 8){
+alert("O CEP deve ter exatamente 8 digitos")
+    }
+
+    else if((numero.value).length > 4){
+      alert("O numero residencial só pode ter até 4 digitos")
+    }
 
 
+else{
     var idIgreja = sessionStorage.ID_IGREJA
     var hora = ipt_hora.value + ":00"
     var data = ipt_data.value
@@ -151,7 +175,6 @@ fetch(`/postagem/post/${idIgreja}`, {
   categoria.value = "";
   descricao_evento.value = "";
   foto.value = "";
-    // limpar campos...
   } else {
     return res.text().then(texto => {
       console.error("Erro no servidor:", texto);
@@ -163,5 +186,8 @@ fetch(`/postagem/post/${idIgreja}`, {
   console.error("Erro de rede:", err);
   alert("Erro de rede ao tentar cadastrar o evento.");
 });
+  }}
+  else{
+    alert("Sua sessão de igreja não esta definida tente logar novamente")
   }}
 </script>
